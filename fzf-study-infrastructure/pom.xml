@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>fzf-study</artifactId>
+        <groupId>com.fanzf.study</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>fzf-study-infrastructure</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.fanzf.study</groupId>
+            <artifactId>fzf-study-java-application</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.mybatis</groupId>-->
+<!--            <artifactId>mybatis</artifactId>-->
+<!--            <version>3.5.9</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
+    </dependencies>
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.mybatis.generator</groupId>-->
+<!--                <artifactId>mybatis-ge nerator-maven-plugin</artifactId>-->
+<!--                <version>1.4.0</version>-->
+<!--                &lt;!&ndash;mybatis_generator配置文件位置&ndash;&gt;-->
+<!--                <configuration>-->
+<!--                    <configurationFile>src/main/resources/mybatis_generator_config.xml</configurationFile>-->
+<!--                    <verbose>true</verbose>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+</project>

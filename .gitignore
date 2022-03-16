@@ -1,0 +1,3 @@
+# Project exclude paths
+/fzf-study-infrastructure/target/
+/fzf-study-java-starter/target/

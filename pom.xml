@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>2.0.3.RELEASE</version>-->
+<!--        <relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+<!--    </parent>-->
+        <parent>
+            <groupId>com.alipay.sofa</groupId>
+            <artifactId>sofaboot-dependencies</artifactId>
+            <version>3.4.3</version>
+            <relativePath/> <!-- lookup parent from repository -->
+        </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fanzf.study</groupId>
+    <artifactId>fzf-study</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>fzf-study</name>
+    <description>study for java</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>fzf-study-java-application</module>
+        <module>fzf-study-java-domain</module>
+        <module>fzf-study-java-exporter</module>
+        <module>fzf-study-java-dictionary</module>
+        <module>fzf-study-java-starter</module>
+        <module>fzf-study-infrastructure</module>
+        <module>fzf-study-common</module>
+    </modules>
+
+
+    <properties>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>2021.0.1</spring-cloud.version>
+        <mysql-connector-java.version>8.0.19</mysql-connector-java.version>
+        <mybatis-spring-boot-starter.version>2.0.1</mybatis-spring-boot-starter.version>
+        <lombok.version>1.18.8</lombok.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.fanzf.study</groupId>
+                <artifactId>fzf-study-infrastructure</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fanzf.study</groupId>
+                <artifactId>fzf-study-java-domain</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fanzf.study</groupId>
+                <artifactId>fzf-study-java-starter</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fanzf.study</groupId>
+                <artifactId>fzf-study-java-application</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fanzf.study</groupId>
+                <artifactId>fzf-study-java-dictionary</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fanzf.study</groupId>
+                <artifactId>fzf-study-java-rpc-adapter</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+<!--            第三方依赖-->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>2.0.6</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+<!--            <dependency>-->
+<!--                <groupId>com.alipay.sofa</groupId>-->
+<!--                <artifactId>sofa-rpc-all</artifactId>-->
+<!--                <version>5.3.1</version>-->
+<!--            </dependency>-->
+        </dependencies>
+
+    </dependencyManagement>
+
+<!--    <build>-->
+<!--        <plugins>-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <excludes>-->
+<!--                        <exclude>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                        </exclude>-->
+<!--                    </excludes>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
+
+</project>
