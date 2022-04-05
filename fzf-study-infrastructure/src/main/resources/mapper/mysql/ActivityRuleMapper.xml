@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.ActivityRuleMapper">
+  <resultMap id="BaseResultMap" type="com.fzf.study.infrastructure.adapter.db.po.ActivityRulePO">
+    <id column="id" property="id" />
+    <result column="activity_id"  property="activityId" />
+    <result column="event_type" property="eventType" />
+    <result column="rule_name" property="ruleName" />
+    <result column="rule" property="ruleValue" />
+    <result column="desc" property="description" />
+    <result column="rule_data_type" property="valueFormatType" />
+    <result column="add_time" property="createdTime" />
+    <result column="update_time" property="updatedTime" />
+  </resultMap>
+
+  <sql id="tableName">
+        marketing_rule
+  </sql>
+
+  <sql id="Base_Column_List">
+    id, activity_id, event_type, rule_name, rule, `desc`, rule_data_type, add_time, update_time
+  </sql>
+
+  <insert id="addList" parameterType="java.util.List">
+    insert into <include refid="tableName"/>
+    (activity_id, event_type, rule, rule_name, `desc`, rule_data_type)
+    values
+    <foreach collection ="list" item="activityRule" index= "index" separator =",">
+      (#{activityRule.activityId}, #{activityRule.eventType}, #{activityRule.ruleValue}, #{activityRule.ruleName},
+          #{activityRule.description}, #{activityRule.valueFormatType})
+    </foreach>
+  </insert>
+
+  <select id="queryByCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from <include refid="tableName"/>
+    where 1=1
+    <if test="activityId != null and activityId != 0">
+      and activity_id = #{activityId,jdbcType=INTEGER},
+    </if>
+    <if test="ruleName != null and ruleName != ''">
+      and rule_name = #{ruleName,jdbcType=VARCHAR}
+    </if>
+  </select>
+
+  <select id="queryByRuleName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from <include refid="tableName"/>
+    where 1=1
+    <if test="ruleNameList!=null and ruleNameList.size()>0">
+      and rule_name in
+      <foreach collection="ruleNameList" item="ruleName" separator="," open="(" close=")">
+        #{ruleName, jdbcType=VARCHAR}
+      </foreach>
+    </if>
+  </select>
+  <insert id="upsertList" parameterType="java.util.List">
+    insert into <include refid="tableName"/>
+    (id, activity_id, event_type, rule, rule_name, `desc`, rule_data_type)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.id},
+      #{item.activityId},
+      #{item.eventType},
+      #{item.ruleValue},
+      #{item.ruleName},
+      #{item.description},
+      #{item.valueFormatType}
+      )
+    </foreach>
+    ON DUPLICATE KEY UPDATE
+    rule = values(rule)
+  </insert>
+
+  <select id="queryListByActivityIds" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" />
+    from <include refid="tableName"/>
+    where activity_id in
+    <foreach collection ="activityIds" item="activityId" open="(" close=")" separator=",">
+      #{activityId}
+    </foreach>
+  </select>
+
+  <select id="queryListByActivityId" resultMap="BaseResultMap" >
+    select <include refid="Base_Column_List" />
+    from <include refid="tableName"/>
+    where activity_id = #{activityId}
+  </select>
+
+  <select id="queryRuleByRuleName" resultType="java.lang.String">
+
+    SELECT rule FROM  <include refid="tableName"/> where rule_name =#{ruleName}
+
+  </select>
+
+  <update id="updateRule" parameterType="com.fzf.study.infrastructure.adapter.db.po.ActivityRulePO">
+    update <include refid="tableName"/> set rule=#{ruleValue} where activity_id =#{activityId} and rule_name=#{ruleName}
+  </update>
+</mapper>

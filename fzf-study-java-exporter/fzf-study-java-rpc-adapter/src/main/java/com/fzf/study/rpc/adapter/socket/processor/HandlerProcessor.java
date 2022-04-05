@@ -1,9 +1,9 @@
 package com.fzf.study.rpc.adapter.socket.processor;
 
 
+import com.fzf.study.rpc.adapter.socket.annotation.NFSServiceId;
+import com.fzf.study.rpc.adapter.socket.factory.NFSServiceFactory;
 import com.google.common.collect.Maps;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.annotation.NFSServiceId;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.factory.NFSServiceFactory;
 import org.reflections.Reflections;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -16,7 +16,7 @@ import java.util.Set;
 @Component
 public class HandlerProcessor implements BeanFactoryPostProcessor {
 
-    private static final String NFS_SERVICE_PACKAGE = "com.sankuai.meituan.mkt.activity.rpc.adapter";
+    private static final String NFS_SERVICE_PACKAGE = "com.fzf.study.rpc.adapter";
 
 
     @Override

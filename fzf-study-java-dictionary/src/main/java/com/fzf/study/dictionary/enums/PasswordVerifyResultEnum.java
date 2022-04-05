@@ -1,6 +1,7 @@
 package com.fzf.study.dictionary.enums;
 
-import com.sankuai.meituan.mkt.activity.dictionary.typehandler.LabelAndValue;
+
+import com.fzf.study.dictionary.typehandler.LabelAndValue;
 
 /**
  * @author: xuaimin

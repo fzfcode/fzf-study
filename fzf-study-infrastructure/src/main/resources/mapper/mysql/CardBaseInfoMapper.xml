@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.common.CardBaseInfoMapper">
+  <resultMap id="BaseResultMap" type="com.fzf.study.infrastructure.adapter.db.po.common.CardBaseInfoPO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="logical_cardno" jdbcType="VARCHAR" property="logicalCardno" />
+    <result column="orgno" jdbcType="CHAR" property="orgno" />
+    <result column="acctno" jdbcType="INTEGER" property="acctno" />
+    <result column="custno" jdbcType="INTEGER" property="custno" />
+    <result column="prodno" jdbcType="CHAR" property="prodno" />
+    <result column="appno" jdbcType="VARCHAR" property="appno" />
+    <result column="barcode" jdbcType="VARCHAR" property="barcode" />
+    <result column="bsc_supp_ind" jdbcType="CHAR" property="bscSuppInd" />
+    <result column="bsc_logiccard_no" jdbcType="VARCHAR" property="bscLogiccardNo" />
+    <result column="owning_branch" jdbcType="VARCHAR" property="owningBranch" />
+    <result column="app_promotion_cd" jdbcType="VARCHAR" property="appPromotionCd" />
+    <result column="recom_id" jdbcType="VARCHAR" property="recomId" />
+    <result column="recom_name" jdbcType="VARCHAR" property="recomName" />
+    <result column="recom_card_no" jdbcType="VARCHAR" property="recomCardNo" />
+    <result column="setup_date" jdbcType="VARCHAR" property="setupDate" />
+    <result column="block_code" jdbcType="VARCHAR" property="blockCode" />
+    <result column="activate_ind" jdbcType="CHAR" property="activateInd" />
+    <result column="activate_date" jdbcType="VARCHAR" property="activateDate" />
+    <result column="cancel_date" jdbcType="VARCHAR" property="cancelDate" />
+    <result column="expire_date" jdbcType="VARCHAR" property="expireDate" />
+    <result column="latest_card_no" jdbcType="VARCHAR" property="latestCardNo" />
+    <result column="old_card_no" jdbcType="VARCHAR" property="oldCardNo" />
+    <result column="app_source" jdbcType="VARCHAR" property="appSource" />
+    <result column="represent_name" jdbcType="VARCHAR" property="representName" />
+    <result column="pos_pin_verify_ind" jdbcType="CHAR" property="posPinVerifyInd" />
+    <result column="relationship_to_bsc" jdbcType="CHAR" property="relationshipToBsc" />
+    <result column="card_expire_date" jdbcType="VARCHAR" property="cardExpireDate" />
+    <result column="card_fee_rate" jdbcType="DECIMAL" property="cardFeeRate" />
+    <result column="renew_ind" jdbcType="CHAR" property="renewInd" />
+    <result column="renew_reject_cd" jdbcType="CHAR" property="renewRejectCd" />
+    <result column="first_card_fee_date" jdbcType="VARCHAR" property="firstCardFeeDate" />
+    <result column="last_renewal_date" jdbcType="VARCHAR" property="lastRenewalDate" />
+    <result column="first_usage_flag" jdbcType="CHAR" property="firstUsageFlag" />
+    <result column="next_card_fee_date" jdbcType="VARCHAR" property="nextCardFeeDate" />
+    <result column="waive_cardfee_ind" jdbcType="CHAR" property="waiveCardfeeInd" />
+    <result column="card_fetch_method" jdbcType="CHAR" property="cardFetchMethod" />
+    <result column="card_mailer_ind" jdbcType="CHAR" property="cardMailerInd" />
+    <result column="first_usage_date" jdbcType="VARCHAR" property="firstUsageDate" />
+    <result column="fetch_branch" jdbcType="VARCHAR" property="fetchBranch" />
+    <result column="cancel_reason" jdbcType="VARCHAR" property="cancelReason" />
+    <result column="electronic_ind" jdbcType="CHAR" property="electronicInd" />
+    <result column="activate_branch" jdbcType="VARCHAR" property="activateBranch" />
+    <result column="accepter_name" jdbcType="VARCHAR" property="accepterName" />
+    <result column="accepter_emp_id" jdbcType="VARCHAR" property="accepterEmpId" />
+    <result column="recom_source_cd" jdbcType="VARCHAR" property="recomSourceCd" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, logical_cardno, orgno, acctno, custno, prodno, appno, barcode, bsc_supp_ind,
+    bsc_logiccard_no, owning_branch, app_promotion_cd, recom_id, recom_name, recom_card_no,
+    setup_date, block_code, activate_ind, activate_date, cancel_date, expire_date, latest_card_no,
+    old_card_no, app_source, represent_name, pos_pin_verify_ind, relationship_to_bsc,
+    card_expire_date, card_fee_rate, renew_ind, renew_reject_cd, first_card_fee_date,
+    last_renewal_date, first_usage_flag, next_card_fee_date, waive_cardfee_ind, card_fetch_method,
+    card_mailer_ind, first_usage_date, fetch_branch, cancel_reason, electronic_ind, activate_branch,
+    accepter_name, accepter_emp_id, recom_source_cd, creat_time, update_time
+  </sql>
+
+  <resultMap id="SmsResultMap" type="com.fzf.study.infrastructure.adapter.db.po.BatchSmsInfoPO">
+    <result column="key_no" jdbcType="VARCHAR" property="keyNo" />
+    <result column="orgno" jdbcType="VARCHAR" property="org" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+  </resultMap>
+  <select id="querySmsInfoByApplyNo" parameterType="java.util.List" resultMap="SmsResultMap">
+    select card.appno as key_no,cust.orgno,cust.mobile_no
+    from card_base_info card,cust_base_info cust
+    where
+    card.appno in
+    <foreach collection="apply_no_list" item="apply_no" separator="," open="(" close=")">
+      #{apply_no, jdbcType=VARCHAR}
+    </foreach>
+    and card.custno=cust.custno
+  </select>
+
+  <resultMap id="SmsTemplateFiledMap" type="com.fzf.study.infrastructure.adapter.db.po.SmsTemplateFieldPO">
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <select id="querySmsTemplateFieldByApplyNo" parameterType="java.util.Map" resultMap="SmsTemplateFiledMap">
+    select cust.name
+    from card_base_info card,cust_base_info cust
+    where
+    card.appno =#{applyNo, jdbcType=VARCHAR}
+    and card.custno=cust.custno limit 1
+  </select>
+
+  <select id="queryCardBaseInfoByApplyNo"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from card_base_info
+    where appno = #{applyNo} limit 1
+  </select>
+
+  <select id="selectByLatestCardNo"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from card_base_info
+    where latest_card_no = #{latestCardNo}
+  </select>
+
+  <select id="selectByAcctNoAndLatestCardNo"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from card_base_info
+    where acctno = #{acctNo} and latest_card_no = #{latestCardNo}
+  </select>
+
+  <select id="countByLogicalCardNo"  resultType="java.lang.Long">
+    select count(1) from card_base_info
+    WHERE  logical_cardno = #{logicalCardNo,jdbcType=VARCHAR}
+  </select>
+
+
+  <insert id="addCardBaseInfo" parameterType="com.fzf.study.infrastructure.adapter.db.po.common.CardBaseInfoPO">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into card_base_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="logicalCardno != null">
+        logical_cardno,
+      </if>
+      <if test="orgno != null">
+        orgno,
+      </if>
+      <if test="acctno != null">
+        acctno,
+      </if>
+      <if test="custno != null">
+        custno,
+      </if>
+      <if test="prodno != null">
+        prodno,
+      </if>
+      <if test="appno != null">
+        appno,
+      </if>
+      <if test="barcode != null">
+        barcode,
+      </if>
+      <if test="bscSuppInd != null">
+        bsc_supp_ind,
+      </if>
+      <if test="bscLogiccardNo != null">
+        bsc_logiccard_no,
+      </if>
+      <if test="owningBranch != null">
+        owning_branch,
+      </if>
+      <if test="appPromotionCd != null">
+        app_promotion_cd,
+      </if>
+      <if test="recomId != null">
+        recom_id,
+      </if>
+      <if test="recomName != null">
+        recom_name,
+      </if>
+      <if test="recomCardNo != null">
+        recom_card_no,
+      </if>
+      <if test="setupDate != null">
+        setup_date,
+      </if>
+      <if test="blockCode != null">
+        block_code,
+      </if>
+      <if test="activateInd != null">
+        activate_ind,
+      </if>
+      <if test="activateDate != null">
+        activate_date,
+      </if>
+      <if test="cancelDate != null">
+        cancel_date,
+      </if>
+      <if test="expireDate != null">
+        expire_date,
+      </if>
+      <if test="latestCardNo != null">
+        latest_card_no,
+      </if>
+      <if test="oldCardNo != null">
+        old_card_no,
+      </if>
+      <if test="appSource != null">
+        app_source,
+      </if>
+      <if test="representName != null">
+        represent_name,
+      </if>
+      <if test="posPinVerifyInd != null">
+        pos_pin_verify_ind,
+      </if>
+      <if test="relationshipToBsc != null">
+        relationship_to_bsc,
+      </if>
+      <if test="cardExpireDate != null">
+        card_expire_date,
+      </if>
+      <if test="cardFeeRate != null">
+        card_fee_rate,
+      </if>
+      <if test="renewInd != null">
+        renew_ind,
+      </if>
+      <if test="renewRejectCd != null">
+        renew_reject_cd,
+      </if>
+      <if test="firstCardFeeDate != null">
+        first_card_fee_date,
+      </if>
+      <if test="lastRenewalDate != null">
+        last_renewal_date,
+      </if>
+      <if test="firstUsageFlag != null">
+        first_usage_flag,
+      </if>
+      <if test="nextCardFeeDate != null">
+        next_card_fee_date,
+      </if>
+      <if test="waiveCardfeeInd != null">
+        waive_cardfee_ind,
+      </if>
+      <if test="cardFetchMethod != null">
+        card_fetch_method,
+      </if>
+      <if test="cardMailerInd != null">
+        card_mailer_ind,
+      </if>
+      <if test="firstUsageDate != null">
+        first_usage_date,
+      </if>
+      <if test="fetchBranch != null">
+        fetch_branch,
+      </if>
+      <if test="cancelReason != null">
+        cancel_reason,
+      </if>
+      <if test="electronicInd != null">
+        electronic_ind,
+      </if>
+      <if test="activateBranch != null">
+        activate_branch,
+      </if>
+      <if test="accepterName != null">
+        accepter_name,
+      </if>
+      <if test="accepterEmpId != null">
+        accepter_emp_id,
+      </if>
+      <if test="recomSourceCd != null">
+        recom_source_cd,
+      </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="logicalCardno != null">
+        #{logicalCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="orgno != null">
+        #{orgno,jdbcType=CHAR},
+      </if>
+      <if test="acctno != null">
+        #{acctno,jdbcType=INTEGER},
+      </if>
+      <if test="custno != null">
+        #{custno,jdbcType=INTEGER},
+      </if>
+      <if test="prodno != null">
+        #{prodno,jdbcType=CHAR},
+      </if>
+      <if test="appno != null">
+        #{appno,jdbcType=VARCHAR},
+      </if>
+      <if test="barcode != null">
+        #{barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="bscSuppInd != null">
+        #{bscSuppInd,jdbcType=CHAR},
+      </if>
+      <if test="bscLogiccardNo != null">
+        #{bscLogiccardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="owningBranch != null">
+        #{owningBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="appPromotionCd != null">
+        #{appPromotionCd,jdbcType=VARCHAR},
+      </if>
+      <if test="recomId != null">
+        #{recomId,jdbcType=VARCHAR},
+      </if>
+      <if test="recomName != null">
+        #{recomName,jdbcType=VARCHAR},
+      </if>
+      <if test="recomCardNo != null">
+        #{recomCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="setupDate != null">
+        #{setupDate,jdbcType=VARCHAR},
+      </if>
+      <if test="blockCode != null">
+        #{blockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="activateInd != null">
+        #{activateInd,jdbcType=CHAR},
+      </if>
+      <if test="activateDate != null">
+        #{activateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelDate != null">
+        #{cancelDate,jdbcType=VARCHAR},
+      </if>
+      <if test="expireDate != null">
+        #{expireDate,jdbcType=VARCHAR},
+      </if>
+      <if test="latestCardNo != null">
+        #{latestCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oldCardNo != null">
+        #{oldCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appSource != null">
+        #{appSource,jdbcType=VARCHAR},
+      </if>
+      <if test="representName != null">
+        #{representName,jdbcType=VARCHAR},
+      </if>
+      <if test="posPinVerifyInd != null">
+        #{posPinVerifyInd,jdbcType=CHAR},
+      </if>
+      <if test="relationshipToBsc != null">
+        #{relationshipToBsc,jdbcType=CHAR},
+      </if>
+      <if test="cardExpireDate != null">
+        #{cardExpireDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cardFeeRate != null">
+        #{cardFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="renewInd != null">
+        #{renewInd,jdbcType=CHAR},
+      </if>
+      <if test="renewRejectCd != null">
+        #{renewRejectCd,jdbcType=CHAR},
+      </if>
+      <if test="firstCardFeeDate != null">
+        #{firstCardFeeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastRenewalDate != null">
+        #{lastRenewalDate,jdbcType=VARCHAR},
+      </if>
+      <if test="firstUsageFlag != null">
+        #{firstUsageFlag,jdbcType=CHAR},
+      </if>
+      <if test="nextCardFeeDate != null">
+        #{nextCardFeeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="waiveCardfeeInd != null">
+        #{waiveCardfeeInd,jdbcType=CHAR},
+      </if>
+      <if test="cardFetchMethod != null">
+        #{cardFetchMethod,jdbcType=CHAR},
+      </if>
+      <if test="cardMailerInd != null">
+        #{cardMailerInd,jdbcType=CHAR},
+      </if>
+      <if test="firstUsageDate != null">
+        #{firstUsageDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fetchBranch != null">
+        #{fetchBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelReason != null">
+        #{cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="electronicInd != null">
+        #{electronicInd,jdbcType=CHAR},
+      </if>
+      <if test="activateBranch != null">
+        #{activateBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="accepterName != null">
+        #{accepterName,jdbcType=VARCHAR},
+      </if>
+      <if test="accepterEmpId != null">
+        #{accepterEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="recomSourceCd != null">
+        #{recomSourceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateCardBaseInfo" parameterType="com.fzf.study.infrastructure.adapter.db.po.common.CardBaseInfoPO">
+    update card_base_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.logicalCardno != null">
+        logical_cardno = #{record.logicalCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgno != null">
+        orgno = #{record.orgno,jdbcType=CHAR},
+      </if>
+      <if test="record.acctno != null">
+        acctno = #{record.acctno,jdbcType=INTEGER},
+      </if>
+      <if test="record.custno != null">
+        custno = #{record.custno,jdbcType=INTEGER},
+      </if>
+      <if test="record.prodno != null">
+        prodno = #{record.prodno,jdbcType=CHAR},
+      </if>
+      <if test="record.appno != null">
+        appno = #{record.appno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.barcode != null">
+        barcode = #{record.barcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bscSuppInd != null">
+        bsc_supp_ind = #{record.bscSuppInd,jdbcType=CHAR},
+      </if>
+      <if test="record.bscLogiccardNo != null">
+        bsc_logiccard_no = #{record.bscLogiccardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.owningBranch != null">
+        owning_branch = #{record.owningBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appPromotionCd != null">
+        app_promotion_cd = #{record.appPromotionCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomId != null">
+        recom_id = #{record.recomId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomName != null">
+        recom_name = #{record.recomName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomCardNo != null">
+        recom_card_no = #{record.recomCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.setupDate != null">
+        setup_date = #{record.setupDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blockCode != null">
+        block_code = #{record.blockCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activateInd != null">
+        activate_ind = #{record.activateInd,jdbcType=CHAR},
+      </if>
+      <if test="record.activateDate != null">
+        activate_date = #{record.activateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelDate != null">
+        cancel_date = #{record.cancelDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expireDate != null">
+        expire_date = #{record.expireDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.latestCardNo != null">
+        latest_card_no = #{record.latestCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldCardNo != null">
+        old_card_no = #{record.oldCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appSource != null">
+        app_source = #{record.appSource,jdbcType=VARCHAR},
+      </if>
+      <if test="record.representName != null">
+        represent_name = #{record.representName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.posPinVerifyInd != null">
+        pos_pin_verify_ind = #{record.posPinVerifyInd,jdbcType=CHAR},
+      </if>
+      <if test="record.relationshipToBsc != null">
+        relationship_to_bsc = #{record.relationshipToBsc,jdbcType=CHAR},
+      </if>
+      <if test="record.cardExpireDate != null">
+        card_expire_date = #{record.cardExpireDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardFeeRate != null">
+        card_fee_rate = #{record.cardFeeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.renewInd != null">
+        renew_ind = #{record.renewInd,jdbcType=CHAR},
+      </if>
+      <if test="record.renewRejectCd != null">
+        renew_reject_cd = #{record.renewRejectCd,jdbcType=CHAR},
+      </if>
+      <if test="record.firstCardFeeDate != null">
+        first_card_fee_date = #{record.firstCardFeeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastRenewalDate != null">
+        last_renewal_date = #{record.lastRenewalDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstUsageFlag != null">
+        first_usage_flag = #{record.firstUsageFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.nextCardFeeDate != null">
+        next_card_fee_date = #{record.nextCardFeeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waiveCardfeeInd != null">
+        waive_cardfee_ind = #{record.waiveCardfeeInd,jdbcType=CHAR},
+      </if>
+      <if test="record.cardFetchMethod != null">
+        card_fetch_method = #{record.cardFetchMethod,jdbcType=CHAR},
+      </if>
+      <if test="record.cardMailerInd != null">
+        card_mailer_ind = #{record.cardMailerInd,jdbcType=CHAR},
+      </if>
+      <if test="record.firstUsageDate != null">
+        first_usage_date = #{record.firstUsageDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fetchBranch != null">
+        fetch_branch = #{record.fetchBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelReason != null">
+        cancel_reason = #{record.cancelReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.electronicInd != null">
+        electronic_ind = #{record.electronicInd,jdbcType=CHAR},
+      </if>
+      <if test="record.activateBranch != null">
+        activate_branch = #{record.activateBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accepterName != null">
+        accepter_name = #{record.accepterName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accepterEmpId != null">
+        accepter_emp_id = #{record.accepterEmpId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomSourceCd != null">
+        recom_source_cd = #{record.recomSourceCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatTime != null">
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where logical_cardno = #{record.logicalCardno,jdbcType=VARCHAR} limit 1
+  </update>
+
+</mapper>

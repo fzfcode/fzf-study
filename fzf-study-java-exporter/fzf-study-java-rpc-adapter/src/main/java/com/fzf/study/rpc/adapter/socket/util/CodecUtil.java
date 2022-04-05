@@ -2,7 +2,7 @@ package com.fzf.study.rpc.adapter.socket.util;
 
 
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.enums.LengthType;
+import com.fzf.study.rpc.adapter.socket.enums.LengthType;
 import org.springframework.core.codec.CodecException;
 
 import java.nio.ByteBuffer;

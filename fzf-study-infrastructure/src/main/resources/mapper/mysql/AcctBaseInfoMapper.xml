@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.AcctBaseInfoMapper">
+    <resultMap id="BaseResultMap" type="com.fzf.study.infrastructure.adapter.db.po.AcctBaseInfoPO">
+        <result column="ORG" jdbcType="CHAR" property="org" />
+        <result column="ACCT_NO" jdbcType="INTEGER" property="acctNo" />
+        <result column="ACCT_TYPE" jdbcType="CHAR" property="acctType" />
+        <result column="CUST_ID" jdbcType="INTEGER" property="custId" />
+        <result column="CUST_LIMIT_ID" jdbcType="INTEGER" property="custLimitId" />
+        <result column="PRODUCT_CD" jdbcType="CHAR" property="productCd" />
+        <result column="DEFAULT_LOGICAL_CARD_NO" jdbcType="VARCHAR" property="defaultLogicalCardNo" />
+        <result column="CURR_CD" jdbcType="CHAR" property="currCd" />
+        <result column="CREDIT_LIMIT" jdbcType="DECIMAL" property="creditLimit" />
+        <result column="TEMP_LIMIT" jdbcType="DECIMAL" property="tempLimit" />
+        <result column="TEMP_LIMIT_BEGIN_DATE" jdbcType="VARCHAR" property="tempLimitBeginDate" />
+        <result column="TEMP_LIMIT_END_DATE" jdbcType="VARCHAR" property="tempLimitEndDate" />
+        <result column="CASH_LIMIT_RT" jdbcType="DECIMAL" property="cashLimitRt" />
+        <result column="OVRLMT_RATE" jdbcType="DECIMAL" property="ovrlmtRate" />
+        <result column="LOAN_LIMIT_RT" jdbcType="DECIMAL" property="loanLimitRt" />
+        <result column="CURR_BAL" jdbcType="DECIMAL" property="currBal" />
+        <result column="CASH_BAL" jdbcType="DECIMAL" property="cashBal" />
+        <result column="PRINCIPAL_BAL" jdbcType="DECIMAL" property="principalBal" />
+        <result column="LOAN_BAL" jdbcType="DECIMAL" property="loanBal" />
+        <result column="DISPUTE_AMT" jdbcType="DECIMAL" property="disputeAmt" />
+        <result column="BEGIN_BAL" jdbcType="DECIMAL" property="beginBal" />
+        <result column="PMT_DUE_DAY_BAL" jdbcType="DECIMAL" property="pmtDueDayBal" />
+        <result column="QUAL_GRACE_BAL" jdbcType="DECIMAL" property="qualGraceBal" />
+        <result column="GRACE_DAYS_FULL_IND" jdbcType="CHAR" property="graceDaysFullInd" />
+        <result column="POINT_BEGIN_BAL" jdbcType="DECIMAL" property="pointBeginBal" />
+        <result column="CTD_EARNED_POINTS" jdbcType="DECIMAL" property="ctdEarnedPoints" />
+        <result column="CTD_DISB_POINTS" jdbcType="DECIMAL" property="ctdDisbPoints" />
+        <result column="CTD_ADJ_POINTS" jdbcType="DECIMAL" property="ctdAdjPoints" />
+        <result column="POINT_BAL" jdbcType="DECIMAL" property="pointBal" />
+        <result column="SETUP_DATE" jdbcType="VARCHAR" property="setupDate" />
+        <result column="DORMENT_DATE" jdbcType="VARCHAR" property="dormentDate" />
+        <result column="REINSTATE_DATE" jdbcType="VARCHAR" property="reinstateDate" />
+        <result column="OVRLMT_DATE" jdbcType="VARCHAR" property="ovrlmtDate" />
+        <result column="OVRLMT_NBR_OF_CYC" jdbcType="INTEGER" property="ovrlmtNbrOfCyc" />
+        <result column="NAME" jdbcType="VARCHAR" property="name" />
+        <result column="GENDER" jdbcType="CHAR" property="gender" />
+        <result column="OWNING_BRANCH" jdbcType="VARCHAR" property="owningBranch" />
+        <result column="MOBILE_NO" jdbcType="VARCHAR" property="mobileNo" />
+        <result column="CORP_NAME" jdbcType="VARCHAR" property="corpName" />
+        <result column="BILLING_CYCLE" jdbcType="CHAR" property="billingCycle" />
+        <result column="STMT_FLAG" jdbcType="CHAR" property="stmtFlag" />
+        <result column="STMT_MAIL_ADDR_IND" jdbcType="CHAR" property="stmtMailAddrInd" />
+        <result column="STMT_MEDIA_TYPE" jdbcType="CHAR" property="stmtMediaType" />
+        <result column="STMT_COUNTRY_CD" jdbcType="CHAR" property="stmtCountryCd" />
+        <result column="STMT_STATE" jdbcType="VARCHAR" property="stmtState" />
+        <result column="STMT_CITY" jdbcType="VARCHAR" property="stmtCity" />
+        <result column="STMT_DISTRICT" jdbcType="VARCHAR" property="stmtDistrict" />
+        <result column="STMT_ADDRESS" jdbcType="VARCHAR" property="stmtAddress" />
+        <result column="STMT_ZIP" jdbcType="VARCHAR" property="stmtZip" />
+        <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+        <result column="BLOCK_CODE" jdbcType="VARCHAR" property="blockCode" />
+        <result column="AGE_CD" jdbcType="CHAR" property="ageCd" />
+        <result column="GL_AGE_CD" jdbcType="CHAR" property="glAgeCd" />
+        <result column="UNMATCH_DB" jdbcType="DECIMAL" property="unmatchDb" />
+        <result column="UNMATCH_CASH" jdbcType="DECIMAL" property="unmatchCash" />
+        <result column="UNMATCH_CR" jdbcType="DECIMAL" property="unmatchCr" />
+        <result column="DD_IND" jdbcType="CHAR" property="ddInd" />
+        <result column="DD_BANK_NAME" jdbcType="VARCHAR" property="ddBankName" />
+        <result column="DD_BANK_BRANCH" jdbcType="VARCHAR" property="ddBankBranch" />
+        <result column="DD_BANK_ACCT_NO" jdbcType="VARCHAR" property="ddBankAcctNo" />
+        <result column="DD_BANK_ACCT_NAME" jdbcType="VARCHAR" property="ddBankAcctName" />
+        <result column="LAST_DD_AMT" jdbcType="DECIMAL" property="lastDdAmt" />
+        <result column="LAST_DD_DATE" jdbcType="VARCHAR" property="lastDdDate" />
+        <result column="DUAL_BILLING_FLAG" jdbcType="CHAR" property="dualBillingFlag" />
+        <result column="LAST_PMT_AMT" jdbcType="DECIMAL" property="lastPmtAmt" />
+        <result column="LAST_PMT_DATE" jdbcType="VARCHAR" property="lastPmtDate" />
+        <result column="LAST_STMT_DATE" jdbcType="VARCHAR" property="lastStmtDate" />
+        <result column="LAST_PMT_DUE_DATE" jdbcType="VARCHAR" property="lastPmtDueDate" />
+        <result column="LAST_AGING_DATE" jdbcType="VARCHAR" property="lastAgingDate" />
+        <result column="COLLECT_DATE" jdbcType="VARCHAR" property="collectDate" />
+        <result column="COLLECT_OUT_DATE" jdbcType="VARCHAR" property="collectOutDate" />
+        <result column="NEXT_STMT_DATE" jdbcType="VARCHAR" property="nextStmtDate" />
+        <result column="PMT_DUE_DATE" jdbcType="VARCHAR" property="pmtDueDate" />
+        <result column="DD_DATE" jdbcType="VARCHAR" property="ddDate" />
+        <result column="GRACE_DATE" jdbcType="VARCHAR" property="graceDate" />
+        <result column="DLBL_DATE" jdbcType="VARCHAR" property="dlblDate" />
+        <result column="CLOSED_DATE" jdbcType="VARCHAR" property="closedDate" />
+        <result column="FIRST_STMT_DATE" jdbcType="VARCHAR" property="firstStmtDate" />
+        <result column="CANCEL_DATE" jdbcType="VARCHAR" property="cancelDate" />
+        <result column="CHARGE_OFF_DATE" jdbcType="VARCHAR" property="chargeOffDate" />
+        <result column="FIRST_PURCHASE_DATE" jdbcType="VARCHAR" property="firstPurchaseDate" />
+        <result column="FIRST_PURCHASE_AMT" jdbcType="DECIMAL" property="firstPurchaseAmt" />
+        <result column="TOT_DUE_AMT" jdbcType="DECIMAL" property="totDueAmt" />
+        <result column="CURR_DUE_AMT" jdbcType="DECIMAL" property="currDueAmt" />
+        <result column="PAST_DUE_AMT1" jdbcType="DECIMAL" property="pastDueAmt1" />
+        <result column="PAST_DUE_AMT2" jdbcType="DECIMAL" property="pastDueAmt2" />
+        <result column="PAST_DUE_AMT3" jdbcType="DECIMAL" property="pastDueAmt3" />
+        <result column="PAST_DUE_AMT4" jdbcType="DECIMAL" property="pastDueAmt4" />
+        <result column="PAST_DUE_AMT5" jdbcType="DECIMAL" property="pastDueAmt5" />
+        <result column="PAST_DUE_AMT6" jdbcType="DECIMAL" property="pastDueAmt6" />
+        <result column="PAST_DUE_AMT7" jdbcType="DECIMAL" property="pastDueAmt7" />
+        <result column="PAST_DUE_AMT8" jdbcType="DECIMAL" property="pastDueAmt8" />
+        <result column="CTD_CASH_AMT" jdbcType="DECIMAL" property="ctdCashAmt" />
+        <result column="CTD_CASH_CNT" jdbcType="INTEGER" property="ctdCashCnt" />
+        <result column="CTD_RETAIL_AMT" jdbcType="DECIMAL" property="ctdRetailAmt" />
+        <result column="CTD_RETAIL_CNT" jdbcType="INTEGER" property="ctdRetailCnt" />
+        <result column="CTD_PAYMENT_AMT" jdbcType="DECIMAL" property="ctdPaymentAmt" />
+        <result column="CTD_PAYMENT_CNT" jdbcType="INTEGER" property="ctdPaymentCnt" />
+        <result column="CTD_DB_ADJ_AMT" jdbcType="DECIMAL" property="ctdDbAdjAmt" />
+        <result column="CTD_DB_ADJ_CNT" jdbcType="INTEGER" property="ctdDbAdjCnt" />
+        <result column="CTD_CR_ADJ_AMT" jdbcType="DECIMAL" property="ctdCrAdjAmt" />
+        <result column="CTD_CR_ADJ_CNT" jdbcType="INTEGER" property="ctdCrAdjCnt" />
+        <result column="CTD_FEE_AMT" jdbcType="DECIMAL" property="ctdFeeAmt" />
+        <result column="CTD_FEE_CNT" jdbcType="INTEGER" property="ctdFeeCnt" />
+        <result column="CTD_INTEREST_AMT" jdbcType="DECIMAL" property="ctdInterestAmt" />
+        <result column="CTD_INTEREST_CNT" jdbcType="INTEGER" property="ctdInterestCnt" />
+        <result column="CTD_REFUND_AMT" jdbcType="DECIMAL" property="ctdRefundAmt" />
+        <result column="CTD_REFUND_CNT" jdbcType="INTEGER" property="ctdRefundCnt" />
+        <result column="CTD_HI_OVRLMT_AMT" jdbcType="DECIMAL" property="ctdHiOvrlmtAmt" />
+        <result column="MTD_RETAIL_AMT" jdbcType="DECIMAL" property="mtdRetailAmt" />
+        <result column="MTD_RETAIL_CNT" jdbcType="INTEGER" property="mtdRetailCnt" />
+        <result column="MTD_CASH_AMT" jdbcType="DECIMAL" property="mtdCashAmt" />
+        <result column="MTD_CASH_CNT" jdbcType="INTEGER" property="mtdCashCnt" />
+        <result column="MTD_REFUND_AMT" jdbcType="DECIMAL" property="mtdRefundAmt" />
+        <result column="MTD_REFUND_CNT" jdbcType="INTEGER" property="mtdRefundCnt" />
+        <result column="YTD_RETAIL_AMT" jdbcType="DECIMAL" property="ytdRetailAmt" />
+        <result column="YTD_RETAIL_CNT" jdbcType="INTEGER" property="ytdRetailCnt" />
+        <result column="YTD_CASH_AMT" jdbcType="DECIMAL" property="ytdCashAmt" />
+        <result column="YTD_CASH_CNT" jdbcType="INTEGER" property="ytdCashCnt" />
+        <result column="YTD_REFUND_AMT" jdbcType="DECIMAL" property="ytdRefundAmt" />
+        <result column="YTD_REFUND_CNT" jdbcType="INTEGER" property="ytdRefundCnt" />
+        <result column="YTD_OVRLMT_FEE_AMT" jdbcType="DECIMAL" property="ytdOvrlmtFeeAmt" />
+        <result column="YTD_OVRLMT_FEE_CNT" jdbcType="INTEGER" property="ytdOvrlmtFeeCnt" />
+        <result column="YTD_LPC_AMT" jdbcType="DECIMAL" property="ytdLpcAmt" />
+        <result column="YTD_LPC_CNT" jdbcType="INTEGER" property="ytdLpcCnt" />
+        <result column="LTD_RETAIL_AMT" jdbcType="DECIMAL" property="ltdRetailAmt" />
+        <result column="LTD_RETAIL_CNT" jdbcType="INTEGER" property="ltdRetailCnt" />
+        <result column="LTD_CASH_AMT" jdbcType="DECIMAL" property="ltdCashAmt" />
+        <result column="LTD_CASH_CNT" jdbcType="INTEGER" property="ltdCashCnt" />
+        <result column="LTD_REFUND_AMT" jdbcType="DECIMAL" property="ltdRefundAmt" />
+        <result column="LTD_REFUND_CNT" jdbcType="INTEGER" property="ltdRefundCnt" />
+        <result column="LTD_HIGHEST_PRINCIPAL" jdbcType="DECIMAL" property="ltdHighestPrincipal" />
+        <result column="LTD_HIGHEST_CR_BAL" jdbcType="DECIMAL" property="ltdHighestCrBal" />
+        <result column="LTD_HIGHEST_BAL" jdbcType="DECIMAL" property="ltdHighestBal" />
+        <result column="COLLECT_TIMES" jdbcType="INTEGER" property="collectTimes" />
+        <result column="COLLECT_COLR" jdbcType="VARCHAR" property="collectColr" />
+        <result column="COLLECT_REASON" jdbcType="CHAR" property="collectReason" />
+        <result column="AGE_HIST" jdbcType="VARCHAR" property="ageHist" />
+        <result column="PAYMENT_HIST" jdbcType="VARCHAR" property="paymentHist" />
+        <result column="WAIVE_OVLFEE_IND" jdbcType="CHAR" property="waiveOvlfeeInd" />
+        <result column="WAIVE_CARDFEE_IND" jdbcType="CHAR" property="waiveCardfeeInd" />
+        <result column="WAIVE_LATEFEE_IND" jdbcType="CHAR" property="waiveLatefeeInd" />
+        <result column="WAIVE_SVCFEE_IND" jdbcType="CHAR" property="waiveSvcfeeInd" />
+        <result column="USER_AMT4" jdbcType="DECIMAL" property="userAmt4" />
+        <result column="USER_AMT5" jdbcType="DECIMAL" property="userAmt5" />
+        <result column="USER_AMT6" jdbcType="DECIMAL" property="userAmt6" />
+        <result column="JPA_VERSION" jdbcType="INTEGER" property="jpaVersion" />
+        <result column="MTD_PAYMENT_AMT" jdbcType="DECIMAL" property="mtdPaymentAmt" />
+        <result column="MTD_PAYMENT_CNT" jdbcType="INTEGER" property="mtdPaymentCnt" />
+        <result column="YTD_PAYMENT_AMT" jdbcType="DECIMAL" property="ytdPaymentAmt" />
+        <result column="YTD_PAYMENT_CNT" jdbcType="INTEGER" property="ytdPaymentCnt" />
+        <result column="LTD_PAYMENT_AMT" jdbcType="DECIMAL" property="ltdPaymentAmt" />
+        <result column="LTD_PAYMENT_CNT" jdbcType="INTEGER" property="ltdPaymentCnt" />
+        <result column="SMS_IND" jdbcType="CHAR" property="smsInd" />
+        <result column="USER_SMS_AMT" jdbcType="DECIMAL" property="userSmsAmt" />
+        <result column="YTD_CYCLE_CHAG_CNT" jdbcType="INTEGER" property="ytdCycleChagCnt" />
+        <result column="LAST_POST_DATE" jdbcType="VARCHAR" property="lastPostDate" />
+        <result column="LARGE_LOAN_BAL" jdbcType="DECIMAL" property="largeLoanBal" />
+        <result column="BEGIN_LOAN_BAL" jdbcType="DECIMAL" property="beginLoanBal" />
+        <result column="BEGIN_LARGE_LOAN_BAL" jdbcType="DECIMAL" property="beginLargeLoanBal" />
+        <result column="HIGHEST_BAL_OUT_LARGE_LOAN" jdbcType="DECIMAL" property="highestBalOutLargeLoan" />
+        <result column="HIGHEST_BAL_OUT_LOAN" jdbcType="DECIMAL" property="highestBalOutLoan" />
+        <result column="IS_USE_CUST_OTB" jdbcType="CHAR" property="isUseCustOtb" />
+        <result column="TXN_MICRO_CREDIT_INT_RATE" jdbcType="DECIMAL" property="txnMicroCreditIntRate" />
+        <result column="TXN_MICRO_CREDIT_BEGIN_DATE" jdbcType="VARCHAR" property="txnMicroCreditBeginDate" />
+        <result column="TXN_MICRO_CREDIT_END_DATE" jdbcType="VARCHAR" property="txnMicroCreditEndDate" />
+        <result column="CORP_NO" jdbcType="VARCHAR" property="corpNo" />
+        <result column="CORP_IND" jdbcType="CHAR" property="corpInd" />
+        <result column="SUPERVISE_IND" jdbcType="CHAR" property="superviseInd" />
+        <result column="MORTGAGE_LOAN_BAL" jdbcType="DECIMAL" property="mortgageLoanBal" />
+        <result column="BEGIN_MORTGAGE_LOAN_BAL" jdbcType="DECIMAL" property="beginMortgageLoanBal" />
+        <result column="ACTIVATE_BRANCH" jdbcType="VARCHAR" property="activateBranch" />
+        <result column="PREFER_START_DATE" jdbcType="VARCHAR" property="preferStartDate" />
+        <result column="PREFER_END_DATE" jdbcType="VARCHAR" property="preferEndDate" />
+        <result column="LTD_HIGHEST_AGE_CD" jdbcType="VARCHAR" property="ltdHighestAgeCd" />
+        <result column="GRACE_HIGHEST_BAL" jdbcType="DECIMAL" property="graceHighestBal" />
+        <result column="PREFER_CD" jdbcType="VARCHAR" property="preferCd" />
+        <result column="LARGE_LOAN_XFRIN_BAL" jdbcType="DECIMAL" property="largeLoanXfrinBal" />
+        <result column="DD_OTHER_BANK_IND" jdbcType="CHAR" property="ddOtherBankInd" />
+        <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+        <result column="udate_time" jdbcType="TIMESTAMP" property="udateTime" />
+    </resultMap>
+
+    <resultMap id="AcctResultMap" type="com.fzf.study.infrastructure.adapter.db.po.AcctInfoPO">
+        <result column="ACCT_NO" jdbcType="INTEGER" property="acctNo" />
+        <result column="ACCT_TYPE" jdbcType="CHAR" property="acctType" />
+        <result column="CUST_ID" jdbcType="INTEGER" property="custId" />
+        <result column="BLOCK_CODE" jdbcType="VARCHAR" property="blockCode" />
+        <result column="CREDIT_LIMIT" jdbcType="DECIMAL" property="creditLimit" />
+        <result column="CTD_RETAIL_AMT" jdbcType="DECIMAL" property="ctdRetailAmt" />
+        <result column="CTD_RETAIL_CNT" jdbcType="INTEGER" property="ctdRetailCnt" />
+        <result column="CURR_BAL" jdbcType="DECIMAL" property="currBal" />
+        <result column="GRACE_DAYS_FULL_IND" jdbcType="CHAR" property="graceDaysFullInd" />
+        <result column="MTD_RETAIL_AMT" jdbcType="DECIMAL" property="mtdRetailAmt" />
+        <result column="MTD_RETAIL_CNT" jdbcType="INTEGER" property="mtdRetailCnt" />
+        <result column="PRINCIPAL_BAL" jdbcType="DECIMAL" property="principalBal" />
+        <result column="PRODUCT_CD" jdbcType="CHAR" property="productCd" />
+        <result column="YTD_RETAIL_AMT" jdbcType="DECIMAL" property="ytdRetailAmt" />
+        <result column="YTD_RETAIL_CNT" jdbcType="INTEGER" property="ytdRetailCnt" />
+        <result column="DEFAULT_LOGICAL_CARD_NO" jdbcType="VARCHAR" property="defaultLogicalCardNo" />
+        <result column="LAST_STMT_DATE" jdbcType="VARCHAR" property="lastStmtDate" />
+        <result column="PMT_DUE_DATE" jdbcType="VARCHAR" property="pmtDueDate" />
+        <result column="CURR_CD" jdbcType="CHAR" property="currCd" />
+        <result column="MOBILE_NO" jdbcType="VARCHAR" property="mobileNo" />
+        <result column="QUAL_GRACE_BAL" jdbcType="DECIMAL" property="qualGraceBal" />
+        <result column="TOT_DUE_AMT" jdbcType="DECIMAL" property="totDueAmt" />
+        <result column="NAME" jdbcType="VARCHAR" property="name" />
+    </resultMap>
+
+    <sql id="Acct_Column_List">
+        ACCT_NO, ACCT_TYPE, CUST_ID, BLOCK_CODE, CREDIT_LIMIT, CTD_RETAIL_AMT, CTD_RETAIL_CNT, CURR_BAL, GRACE_DAYS_FULL_IND, MTD_RETAIL_AMT, MTD_RETAIL_CNT, PRINCIPAL_BAL,
+        PRODUCT_CD, YTD_RETAIL_AMT, YTD_RETAIL_CNT, DEFAULT_LOGICAL_CARD_NO, LAST_STMT_DATE, PMT_DUE_DATE, CURR_CD, MOBILE_NO, QUAL_GRACE_BAL, TOT_DUE_AMT, NAME
+    </sql>
+
+    <select id="queryOneByMobileNo" resultMap="AcctResultMap">
+        SELECT
+        <include refid="Acct_Column_List"/>
+        FROM acct_base_info
+        WHERE MOBILE_NO = #{mobileNo,jdbcType=VARCHAR}
+        ORDER BY LAST_STMT_DATE DESC
+        limit 1
+    </select>
+
+    <select id="queryByAcctNo" resultMap="AcctResultMap">
+        SELECT
+        <include refid="Acct_Column_List"/>
+        FROM acct_base_info
+        WHERE ACCT_NO = #{acctNo,jdbcType=INTEGER}
+        limit 1
+    </select>
+
+</mapper>

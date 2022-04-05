@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.MktExternalActivityRuleMapper">
+  <resultMap id="BaseResultMap" type="com.fzf.study.infrastructure.adapter.db.po.ExternalActivityRulePO">
+    <id column="id" property="id" />
+    <result column="activity_id" property="activityId" />
+    <result column="rule_name" property="ruleName" />
+    <result column="rule_desc" property="ruleDesc" />
+    <result column="rule" property="rule" />
+    <result column="add_time" property="addTime" />
+    <result column="update_time" property="updateTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, activity_id, rule_name, rule_desc, rule, add_time, update_time
+  </sql>
+
+  <sql id="tableName">
+    mkt_external_activity_rule
+  </sql>
+
+
+  <select id="queryByCondition" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mkt_external_activity_rule
+    where activity_id = #{activityId} AND rule_name=#{ruleName}
+  </select>
+
+  <select id="queryAllRules" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from <include refid="tableName"/>
+    where activity_id = #{activityId}
+  </select>
+
+
+</mapper>

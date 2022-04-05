@@ -1,14 +1,14 @@
 package com.fzf.study.rpc.adapter.socket.handler;
 
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.constant.Constants;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.enums.ResponseAbstractEnum;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.factory.NFSServiceFactory;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.message.CoreMessage;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.service.NFSService;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.util.DOMXMLReader;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.util.RespXMlGenerator;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.util.XmlUtils;
+import com.fzf.study.rpc.adapter.socket.constant.Constants;
+import com.fzf.study.rpc.adapter.socket.enums.ResponseAbstractEnum;
+import com.fzf.study.rpc.adapter.socket.factory.NFSServiceFactory;
+import com.fzf.study.rpc.adapter.socket.message.CoreMessage;
+import com.fzf.study.rpc.adapter.socket.service.NFSService;
+import com.fzf.study.rpc.adapter.socket.util.DOMXMLReader;
+import com.fzf.study.rpc.adapter.socket.util.RespXMlGenerator;
+import com.fzf.study.rpc.adapter.socket.util.XmlUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IdleStatus;

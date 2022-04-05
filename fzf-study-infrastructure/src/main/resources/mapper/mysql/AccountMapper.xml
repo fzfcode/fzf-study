@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.common.AccountMapper">
+
+  <select id="queryAccountBlockCodeByIdNo" resultType="java.lang.String">
+    select
+      acct.block_code
+     from cust_base_info cust, acct_base_info acct
+    where cust.certno =#{idNo,jdbcType=VARCHAR} AND acct.cust_id = cust.custno
+  </select>
+
+  <select id="queryIdNoByUserInfo" parameterType="java.util.Map"  resultType="java.lang.Integer">
+    select
+      count(1)
+    from acct_base_info acct,cust_base_info cust
+    WHERE acct.acct_no=#{acctNo,jdbcType=INTEGER} AND  acct.CUST_ID=cust.custno AND cust.certno=#{idNo,jdbcType=VARCHAR} AND cust.id_type='I'
+  </select>
+
+</mapper>

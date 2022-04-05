@@ -1,10 +1,10 @@
 package com.fzf.study.rpc.adapter.socket.codec.encode;
 
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.chain.EncodeFilterChain;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.enums.LengthType;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.message.CoreMessage;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.util.CodeMarkUtils;
+import com.fzf.study.rpc.adapter.socket.chain.EncodeFilterChain;
+import com.fzf.study.rpc.adapter.socket.enums.LengthType;
+import com.fzf.study.rpc.adapter.socket.message.CoreMessage;
+import com.fzf.study.rpc.adapter.socket.util.CodeMarkUtils;
 import lombok.Data;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.mina.core.buffer.IoBuffer;

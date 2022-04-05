@@ -1,8 +1,9 @@
 package com.fzf.study.rpc.adapter.socket.util;
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.constant.Constants;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.enums.ResponseAbstractEnum;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.message.CoreMessage;
+
+import com.fzf.study.rpc.adapter.socket.constant.Constants;
+import com.fzf.study.rpc.adapter.socket.enums.ResponseAbstractEnum;
+import com.fzf.study.rpc.adapter.socket.message.CoreMessage;
 
 import java.io.IOException;
 

@@ -1,11 +1,11 @@
 package com.fzf.study.rpc.adapter.socket.filter;
 
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.constant.Constants;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.enums.LengthType;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.message.CoreMessage;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.message.MessageDefinition;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.util.CodecUtil;
+import com.fzf.study.rpc.adapter.socket.constant.Constants;
+import com.fzf.study.rpc.adapter.socket.enums.LengthType;
+import com.fzf.study.rpc.adapter.socket.message.CoreMessage;
+import com.fzf.study.rpc.adapter.socket.message.MessageDefinition;
+import com.fzf.study.rpc.adapter.socket.util.CodecUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.IoSession;

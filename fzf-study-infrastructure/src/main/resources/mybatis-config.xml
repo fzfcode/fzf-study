@@ -8,18 +8,18 @@
         <!--   设置枚举类型的默认类型处理器    -->
 <!--        <setting name="defaultEnumTypeHandler" value="com.sankuai.ccc.common.dictionary.mybatis.AutoEnumTypeHandler"/>-->
     </settings>
-<!--    <typeHandlers>-->
-<!--        &lt;!&ndash; 使用java8之中的日期和时间类型 &ndash;&gt;-->
-<!--        <typeHandler jdbcType="TIMESTAMP" javaType="java.time.Instant" handler="org.apache.ibatis.type.InstantTypeHandler" />-->
-<!--        <typeHandler jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime" handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />-->
-<!--        <typeHandler jdbcType="DATE" javaType="java.time.LocalDate" handler="org.apache.ibatis.type.LocalDateTypeHandler" />-->
-<!--        <typeHandler jdbcType="TIME" javaType="java.time.LocalTime" handler="org.apache.ibatis.type.LocalTimeTypeHandler" />-->
-<!--        <typeHandler jdbcType="TIMESTAMP" javaType="java.time.OffsetDateTime" handler="org.apache.ibatis.type.OffsetDateTimeTypeHandler" />-->
-<!--        <typeHandler jdbcType="TIME" javaType="java.time.OffsetTime" handler="org.apache.ibatis.type.OffsetTimeTypeHandler" />-->
-<!--        <typeHandler jdbcType="TIMESTAMP" javaType="java.time.ZonedDateTime" handler="org.apache.ibatis.type.ZonedDateTimeTypeHandler" />-->
-<!--        <typeHandler jdbcType="INTEGER" javaType="java.time.Year" handler="org.apache.ibatis.type.YearTypeHandler" />-->
-<!--        <typeHandler jdbcType="INTEGER" javaType="java.time.Month" handler="org.apache.ibatis.type.MonthTypeHandler" />-->
-<!--        <typeHandler jdbcType="VARCHAR" javaType="java.time.YearMonth" handler="org.apache.ibatis.type.YearMonthTypeHandler" />-->
+    <typeHandlers>
+        <!-- 使用java8之中的日期和时间类型 -->
+        <typeHandler jdbcType="TIMESTAMP" javaType="java.time.Instant" handler="org.apache.ibatis.type.InstantTypeHandler" />
+        <typeHandler jdbcType="TIMESTAMP" javaType="java.time.LocalDateTime" handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
+        <typeHandler jdbcType="DATE" javaType="java.time.LocalDate" handler="org.apache.ibatis.type.LocalDateTypeHandler" />
+        <typeHandler jdbcType="TIME" javaType="java.time.LocalTime" handler="org.apache.ibatis.type.LocalTimeTypeHandler" />
+        <typeHandler jdbcType="TIMESTAMP" javaType="java.time.OffsetDateTime" handler="org.apache.ibatis.type.OffsetDateTimeTypeHandler" />
+        <typeHandler jdbcType="TIME" javaType="java.time.OffsetTime" handler="org.apache.ibatis.type.OffsetTimeTypeHandler" />
+        <typeHandler jdbcType="TIMESTAMP" javaType="java.time.ZonedDateTime" handler="org.apache.ibatis.type.ZonedDateTimeTypeHandler" />
+        <typeHandler jdbcType="INTEGER" javaType="java.time.Year" handler="org.apache.ibatis.type.YearTypeHandler" />
+        <typeHandler jdbcType="INTEGER" javaType="java.time.Month" handler="org.apache.ibatis.type.MonthTypeHandler" />
+        <typeHandler jdbcType="VARCHAR" javaType="java.time.YearMonth" handler="org.apache.ibatis.type.YearMonthTypeHandler" />
 <!--        <typeHandler javaType="com.sankuai.ccc.common.dictionary.model.Money" jdbcType="INTEGER" handler="com.sankuai.ccc.common.dictionary.mybatis.MoneyTypeHandler"/>-->
-<!--    </typeHandlers>-->
+    </typeHandlers>
 </configuration>

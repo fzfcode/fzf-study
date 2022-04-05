@@ -1,9 +1,9 @@
 package com.fzf.study.rpc.adapter.socket.chain;
 
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.filter.EncodeFilter;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.message.CoreMessage;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.message.MessageDefinition;
+import com.fzf.study.rpc.adapter.socket.filter.EncodeFilter;
+import com.fzf.study.rpc.adapter.socket.message.CoreMessage;
+import com.fzf.study.rpc.adapter.socket.message.MessageDefinition;
 import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolEncoderOutput;

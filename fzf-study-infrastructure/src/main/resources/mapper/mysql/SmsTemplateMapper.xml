@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.SmsTemplateMapper">
+  <resultMap id="BaseResultMap" type="com.fzf.study.infrastructure.adapter.db.po.SmsTemplatePO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sms_id" jdbcType="INTEGER" property="smsId" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="template_name" jdbcType="VARCHAR" property="templateName" />
+    <result column="send_begintime" jdbcType="VARCHAR" property="sendBeginTime" />
+    <result column="send_endtime" jdbcType="VARCHAR" property="sendEndTime" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, sms_id, content, template_name,send_begintime,send_endtime, add_time, update_time
+  </sql>
+
+  <select id="querySmsSuffixBySmsId" resultType="java.lang.String">
+    SELECT  content from tm_sms_template where sms_id=#{smsId}
+  </select>
+
+  <select id="querySmsTemplateContentBySmsId" resultType="java.lang.String">
+    SELECT  content from tm_sms_template where sms_id=#{smsId}
+  </select>
+
+  <select id="querySmsTemplateById" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from tm_sms_template WHERE  sms_id=#{smsId}
+  </select>
+
+  <select id="querySmsTemplateByName" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from tm_sms_template WHERE 1=1
+    <if test="templateName != null and templateName!='' ">
+      and template_name LIKE concat('%',#{templateName},'%')
+    </if>
+  </select>
+
+  <update id="updateSmsTemplateById" parameterType="com.fzf.study.infrastructure.adapter.db.po.SmsTemplatePO">
+    update tm_sms_template
+    set content = #{content,jdbcType=VARCHAR},
+    template_name = #{templateName,jdbcType=VARCHAR},
+    send_begintime = #{sendBeginTime,jdbcType=VARCHAR},
+    send_endtime = #{sendEndTime,jdbcType=VARCHAR}
+    where sms_id = #{smsId,jdbcType=BIGINT}
+  </update>
+
+  <select id="querySmsTemplateMaxId" resultType="java.lang.Integer">
+    SELECT  max(sms_id) from tm_sms_template
+  </select>
+
+  <insert id="addSmsTemplate" parameterType="com.fzf.study.infrastructure.adapter.db.po.SmsTemplatePO">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tm_sms_template (sms_id ,content, template_name,send_begintime, send_endtime)
+    values (#{smsId,jdbcType=BIGINT},#{content,jdbcType=VARCHAR}, #{templateName,jdbcType=VARCHAR}, #{sendBeginTime,jdbcType=VARCHAR},
+    #{sendEndTime,jdbcType=VARCHAR})
+  </insert>
+
+  <select id="queryMaxSmsId" resultType="java.lang.Integer">
+    SELECT  max(sms_id) from tm_sms_template
+  </select>
+
+  <insert id="insertSmsTemplate" useGeneratedKeys="true" keyProperty="id">
+
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tm_sms_template (sms_id,content,template_name) values
+    (#{smsId},#{content},#{templateName})
+  </insert>
+
+</mapper>

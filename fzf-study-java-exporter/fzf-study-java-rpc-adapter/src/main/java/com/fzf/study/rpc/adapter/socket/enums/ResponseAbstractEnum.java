@@ -1,7 +1,7 @@
 package com.fzf.study.rpc.adapter.socket.enums;
 
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.constant.Constants;
+import com.fzf.study.rpc.adapter.socket.constant.Constants;
 
 public enum ResponseAbstractEnum {
 

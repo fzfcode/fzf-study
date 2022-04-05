@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <util:properties id="env">
+        <prop key="listenPorts">${socket.port}</prop>
+        <prop key="idleTime">${socket.idleTime}</prop>
+        <prop key="lvMessageLengthSize">${socket.lvMessageLengthSize}</prop>
+    </util:properties>
+
+    <!-- socket服务端 ，接收top-card的请求报文 -->
+    <bean class="com.fzf.study.rpc.adapter.socket.server.SocketServer" init-method="bind" destroy-method="unbind">
+        <property name="acceptor" ref="acceptor" />
+        <property name="ports" value="#{env.listenPorts.split(',')}" />
+    </bean>
+
+    <bean id="acceptor" factory-bean="acceptorHelper" factory-method="getAcceptor">
+        <property name="handler">
+            <bean class="com.fzf.study.rpc.adapter.socket.handler.RequestDispatchIoHandler"/>
+        </property>
+    </bean>
+
+    <bean factory-bean="acceptor" factory-method="getSessionConfig">
+        <property name="bothIdleTime" value="#{env.idleTime}" />
+    </bean>
+
+    <bean id="acceptorHelper" class="com.fzf.study.rpc.adapter.socket.util.NioAcceptorHelper">
+        <property name="ioFilters" ref="ioFilters"/>
+    </bean>
+
+    <bean id="ioFilters" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+               <!-- <bean class="org.apache.mina.filter.logging.LoggingFilter">
+                    <constructor-arg value="com.sankuai.meituan.cbc.benefit.remote.adapter.socket.server.SocketServer"/>
+                </bean>-->
+                <bean class="org.apache.mina.filter.codec.ProtocolCodecFilter">
+                    <constructor-arg>
+                        <bean class="com.fzf.study.rpc.adapter.socket.codec.encode.MessageEncoder">
+                            <property name="lengthType" value="STRING"/>
+                            <property name="lengthSize" value="#{env.lvMessageLengthSize}"/>
+                            <property name="filterChain">
+                                <bean class="com.fzf.study.rpc.adapter.socket.chain.UnifiedEncodeFilterChain">
+                                    <property name="txnMode" value="0"/>
+                                    <property name="chain">
+                                        <list>
+                                            <bean class="com.fzf.study.rpc.adapter.socket.filter.XmlEncodeFilter"/>
+                                        </list>
+                                    </property>
+                                </bean>
+                            </property>
+                        </bean>
+                    </constructor-arg>
+                    <constructor-arg>
+                        <bean class="com.fzf.study.rpc.adapter.socket.codec.decode.MessageDecoder">
+                            <property name="lengthType" value="STRING"/>
+                            <property name="lengthSize" value="#{env.lvMessageLengthSize}"/>
+                            <property name="filterChain">
+                                <bean class="com.fzf.study.rpc.adapter.socket.chain.UnifiedDecodeFilterChain">
+                                    <property name="txnMode" value="0"/>
+                                    <property name="chain">
+                                        <list>
+                                            <bean class="com.fzf.study.rpc.adapter.socket.filter.XmlDecoderFilter"/>
+                                        </list>
+                                    </property>
+                                </bean>
+                            </property>
+                        </bean>
+                    </constructor-arg>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+
+
+
+</beans>

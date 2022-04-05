@@ -1,8 +1,8 @@
 package com.fzf.study.starter;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ImportResource;
 
 /**
  * @author: fanzhenfeng
@@ -11,7 +11,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version: v1.0
  */
 @SpringBootApplication(scanBasePackages = {"com.fzf.study"})
-@MapperScan("**.mapper")
+//@MapperScan("**.mapper")
+@ImportResource("classpath:applicationContext.xml")
 public class AppStarter {
     public static void main(String[] args) {
         SpringApplication.run(AppStarter.class,args);

@@ -1,8 +1,8 @@
 package com.fzf.study.rpc.adapter.socket.util;
 
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.constant.Constants;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.enums.ResponseAbstractEnum;
+import com.fzf.study.rpc.adapter.socket.constant.Constants;
+import com.fzf.study.rpc.adapter.socket.enums.ResponseAbstractEnum;
 import org.apache.commons.lang3.StringUtils;
 
 public class RespXMlGenerator {

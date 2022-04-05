@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.common.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.fzf.study.infrastructure.adapter.db.po.common.CustomerInfoPO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="custno" jdbcType="INTEGER" property="custno" />
+    <result column="bk_cust_no" jdbcType="VARCHAR" property="bkCustNo" />
+    <result column="orgno" jdbcType="CHAR" property="orgno" />
+    <result column="title" jdbcType="CHAR" property="title" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="occupation" jdbcType="CHAR" property="occupation" />
+    <result column="bankmember_no" jdbcType="VARCHAR" property="bankmemberNo" />
+    <result column="nationality" jdbcType="CHAR" property="nationality" />
+    <result column="pr_of_country" jdbcType="CHAR" property="prOfCountry" />
+    <result column="residency_country_cd" jdbcType="CHAR" property="residencyCountryCd" />
+    <result column="marital_status" jdbcType="CHAR" property="maritalStatus" />
+    <result column="qualification" jdbcType="CHAR" property="qualification" />
+    <result column="social_status" jdbcType="CHAR" property="socialStatus" />
+    <result column="id_issuer_address" jdbcType="VARCHAR" property="idIssuerAddress" />
+    <result column="home_phone" jdbcType="VARCHAR" property="homePhone" />
+    <result column="house_ownership" jdbcType="CHAR" property="houseOwnership" />
+    <result column="house_type" jdbcType="CHAR" property="houseType" />
+    <result column="home_stand_from" jdbcType="VARCHAR" property="homeStandFrom" />
+    <result column="liquid_asset" jdbcType="CHAR" property="liquidAsset" />
+    <result column="mobile_no" jdbcType="VARCHAR" property="mobileNo" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="emp_status" jdbcType="CHAR" property="empStatus" />
+    <result column="nbr_of_dependents" jdbcType="INTEGER" property="nbrOfDependents" />
+    <result column="language_ind" jdbcType="VARCHAR" property="languageInd" />
+    <result column="setup_date" jdbcType="VARCHAR" property="setupDate" />
+    <result column="social_ins_amt" jdbcType="DECIMAL" property="socialInsAmt" />
+    <result column="drive_license_id" jdbcType="VARCHAR" property="driveLicenseId" />
+    <result column="drive_lic_reg_date" jdbcType="VARCHAR" property="driveLicRegDate" />
+    <result column="obligate_question" jdbcType="VARCHAR" property="obligateQuestion" />
+    <result column="obligate_answer" jdbcType="VARCHAR" property="obligateAnswer" />
+    <result column="emp_stability" jdbcType="CHAR" property="empStability" />
+    <result column="corp_name" jdbcType="VARCHAR" property="corpName" />
+    <result column="emb_name" jdbcType="VARCHAR" property="embName" />
+    <result column="id_type" jdbcType="CHAR" property="idType" />
+    <result column="certno" jdbcType="VARCHAR" property="certno" />
+    <result column="expiry_date" jdbcType="DATE" property="expiryDate" />
+    <result column="country_cd" jdbcType="CHAR" property="countryCd" />
+    <result column="cust_type" jdbcType="VARCHAR" property="custType" />
+    <result column="degree" jdbcType="CHAR" property="degree" />
+    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="id_expire_date" jdbcType="VARCHAR" property="idExpireDate" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="tableName">
+        cust_base_info
+  </sql>
+
+  <sql id="Base_Column_List">
+    id, custno, bk_cust_no, orgno, title, name, gender, birthday, occupation, bankmember_no,
+    nationality, pr_of_country, residency_country_cd, marital_status, qualification,
+    social_status, id_issuer_address, home_phone, house_ownership, house_type, home_stand_from,
+    liquid_asset, mobile_no, email, emp_status, nbr_of_dependents, language_ind, setup_date,
+    social_ins_amt, drive_license_id, drive_lic_reg_date, obligate_question, obligate_answer,
+    emp_stability, corp_name, emb_name, id_type, certno, expiry_date, country_cd, cust_type,
+    degree, department, id_expire_date, creat_time, update_time
+  </sql>
+
+  <select id="queryCustomerByCustomerNo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+     from <include refid="tableName"/>
+    where custno = #{customerNo,jdbcType=BIGINT}
+  </select>
+
+  <select id="queryCustomerMobileNoByCustomerNo" resultType="java.lang.String">
+    select
+     mobile_no
+    from <include refid="tableName"/>
+    where custno = #{customerNo,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="queryMobileNoByIdNo" resultType="java.lang.String">
+    select
+    mobile_no
+    from <include refid="tableName"/>
+    where id_type=#{idType} and certno=#{idNo} limit 1
+  </select>
+
+  <insert id="insertSelective" parameterType="com.fzf.study.infrastructure.adapter.db.po.common.CustomerInfoPO">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cust_base_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="custno != null">
+        custno,
+      </if>
+      <if test="bkCustNo != null">
+        bk_cust_no,
+      </if>
+      <if test="orgno != null">
+        orgno,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="occupation != null">
+        occupation,
+      </if>
+      <if test="bankmemberNo != null">
+        bankmember_no,
+      </if>
+      <if test="nationality != null">
+        nationality,
+      </if>
+      <if test="prOfCountry != null">
+        pr_of_country,
+      </if>
+      <if test="residencyCountryCd != null">
+        residency_country_cd,
+      </if>
+      <if test="maritalStatus != null">
+        marital_status,
+      </if>
+      <if test="qualification != null">
+        qualification,
+      </if>
+      <if test="socialStatus != null">
+        social_status,
+      </if>
+      <if test="idIssuerAddress != null">
+        id_issuer_address,
+      </if>
+      <if test="homePhone != null">
+        home_phone,
+      </if>
+      <if test="houseOwnership != null">
+        house_ownership,
+      </if>
+      <if test="houseType != null">
+        house_type,
+      </if>
+      <if test="homeStandFrom != null">
+        home_stand_from,
+      </if>
+      <if test="liquidAsset != null">
+        liquid_asset,
+      </if>
+      <if test="mobileNo != null">
+        mobile_no,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="empStatus != null">
+        emp_status,
+      </if>
+      <if test="nbrOfDependents != null">
+        nbr_of_dependents,
+      </if>
+      <if test="languageInd != null">
+        language_ind,
+      </if>
+      <if test="setupDate != null">
+        setup_date,
+      </if>
+      <if test="socialInsAmt != null">
+        social_ins_amt,
+      </if>
+      <if test="driveLicenseId != null">
+        drive_license_id,
+      </if>
+      <if test="driveLicRegDate != null">
+        drive_lic_reg_date,
+      </if>
+      <if test="obligateQuestion != null">
+        obligate_question,
+      </if>
+      <if test="obligateAnswer != null">
+        obligate_answer,
+      </if>
+      <if test="empStability != null">
+        emp_stability,
+      </if>
+      <if test="corpName != null">
+        corp_name,
+      </if>
+      <if test="embName != null">
+        emb_name,
+      </if>
+      <if test="idType != null">
+        id_type,
+      </if>
+      <if test="certno != null">
+        certno,
+      </if>
+      <if test="expiryDate != null">
+        expiry_date,
+      </if>
+      <if test="countryCd != null">
+        country_cd,
+      </if>
+      <if test="custType != null">
+        cust_type,
+      </if>
+      <if test="degree != null">
+        degree,
+      </if>
+      <if test="department != null">
+        department,
+      </if>
+      <if test="idExpireDate != null">
+        id_expire_date,
+      </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="custno != null">
+        #{custno,jdbcType=INTEGER},
+      </if>
+      <if test="bkCustNo != null">
+        #{bkCustNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orgno != null">
+        #{orgno,jdbcType=CHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=CHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null">
+        #{occupation,jdbcType=CHAR},
+      </if>
+      <if test="bankmemberNo != null">
+        #{bankmemberNo,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        #{nationality,jdbcType=CHAR},
+      </if>
+      <if test="prOfCountry != null">
+        #{prOfCountry,jdbcType=CHAR},
+      </if>
+      <if test="residencyCountryCd != null">
+        #{residencyCountryCd,jdbcType=CHAR},
+      </if>
+      <if test="maritalStatus != null">
+        #{maritalStatus,jdbcType=CHAR},
+      </if>
+      <if test="qualification != null">
+        #{qualification,jdbcType=CHAR},
+      </if>
+      <if test="socialStatus != null">
+        #{socialStatus,jdbcType=CHAR},
+      </if>
+      <if test="idIssuerAddress != null">
+        #{idIssuerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="homePhone != null">
+        #{homePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="houseOwnership != null">
+        #{houseOwnership,jdbcType=CHAR},
+      </if>
+      <if test="houseType != null">
+        #{houseType,jdbcType=CHAR},
+      </if>
+      <if test="homeStandFrom != null">
+        #{homeStandFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="liquidAsset != null">
+        #{liquidAsset,jdbcType=CHAR},
+      </if>
+      <if test="mobileNo != null">
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="empStatus != null">
+        #{empStatus,jdbcType=CHAR},
+      </if>
+      <if test="nbrOfDependents != null">
+        #{nbrOfDependents,jdbcType=INTEGER},
+      </if>
+      <if test="languageInd != null">
+        #{languageInd,jdbcType=VARCHAR},
+      </if>
+      <if test="setupDate != null">
+        #{setupDate,jdbcType=VARCHAR},
+      </if>
+      <if test="socialInsAmt != null">
+        #{socialInsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="driveLicenseId != null">
+        #{driveLicenseId,jdbcType=VARCHAR},
+      </if>
+      <if test="driveLicRegDate != null">
+        #{driveLicRegDate,jdbcType=VARCHAR},
+      </if>
+      <if test="obligateQuestion != null">
+        #{obligateQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="obligateAnswer != null">
+        #{obligateAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="empStability != null">
+        #{empStability,jdbcType=CHAR},
+      </if>
+      <if test="corpName != null">
+        #{corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="embName != null">
+        #{embName,jdbcType=VARCHAR},
+      </if>
+      <if test="idType != null">
+        #{idType,jdbcType=CHAR},
+      </if>
+      <if test="certno != null">
+        #{certno,jdbcType=VARCHAR},
+      </if>
+      <if test="expiryDate != null">
+        #{expiryDate,jdbcType=DATE},
+      </if>
+      <if test="countryCd != null">
+        #{countryCd,jdbcType=CHAR},
+      </if>
+      <if test="custType != null">
+        #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null">
+        #{degree,jdbcType=CHAR},
+      </if>
+      <if test="department != null">
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="idExpireDate != null">
+        #{idExpireDate,jdbcType=VARCHAR},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+
+  <select id="countByCustomerNo"  resultType="java.lang.Long">
+    select count(1) from cust_base_info
+    WHERE  custno = #{customerNo,jdbcType=BIGINT}
+  </select>
+
+
+  <update id="updateCustomerInfo" parameterType="com.fzf.study.infrastructure.adapter.db.po.common.CustomerInfoPO">
+    update cust_base_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.custno != null">
+        custno = #{record.custno,jdbcType=INTEGER},
+      </if>
+      <if test="record.bkCustNo != null">
+        bk_cust_no = #{record.bkCustNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orgno != null">
+        orgno = #{record.orgno,jdbcType=CHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=CHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=CHAR},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupation != null">
+        occupation = #{record.occupation,jdbcType=CHAR},
+      </if>
+      <if test="record.bankmemberNo != null">
+        bankmember_no = #{record.bankmemberNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nationality != null">
+        nationality = #{record.nationality,jdbcType=CHAR},
+      </if>
+      <if test="record.prOfCountry != null">
+        pr_of_country = #{record.prOfCountry,jdbcType=CHAR},
+      </if>
+      <if test="record.residencyCountryCd != null">
+        residency_country_cd = #{record.residencyCountryCd,jdbcType=CHAR},
+      </if>
+      <if test="record.maritalStatus != null">
+        marital_status = #{record.maritalStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.qualification != null">
+        qualification = #{record.qualification,jdbcType=CHAR},
+      </if>
+      <if test="record.socialStatus != null">
+        social_status = #{record.socialStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.idIssuerAddress != null">
+        id_issuer_address = #{record.idIssuerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homePhone != null">
+        home_phone = #{record.homePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.houseOwnership != null">
+        house_ownership = #{record.houseOwnership,jdbcType=CHAR},
+      </if>
+      <if test="record.houseType != null">
+        house_type = #{record.houseType,jdbcType=CHAR},
+      </if>
+      <if test="record.homeStandFrom != null">
+        home_stand_from = #{record.homeStandFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liquidAsset != null">
+        liquid_asset = #{record.liquidAsset,jdbcType=CHAR},
+      </if>
+      <if test="record.mobileNo != null">
+        mobile_no = #{record.mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empStatus != null">
+        emp_status = #{record.empStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.nbrOfDependents != null">
+        nbr_of_dependents = #{record.nbrOfDependents,jdbcType=INTEGER},
+      </if>
+      <if test="record.languageInd != null">
+        language_ind = #{record.languageInd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.setupDate != null">
+        setup_date = #{record.setupDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.socialInsAmt != null">
+        social_ins_amt = #{record.socialInsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.driveLicenseId != null">
+        drive_license_id = #{record.driveLicenseId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.driveLicRegDate != null">
+        drive_lic_reg_date = #{record.driveLicRegDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.obligateQuestion != null">
+        obligate_question = #{record.obligateQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.obligateAnswer != null">
+        obligate_answer = #{record.obligateAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empStability != null">
+        emp_stability = #{record.empStability,jdbcType=CHAR},
+      </if>
+      <if test="record.corpName != null">
+        corp_name = #{record.corpName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.embName != null">
+        emb_name = #{record.embName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idType != null">
+        id_type = #{record.idType,jdbcType=CHAR},
+      </if>
+      <if test="record.certno != null">
+        certno = #{record.certno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expiryDate != null">
+        expiry_date = #{record.expiryDate,jdbcType=DATE},
+      </if>
+      <if test="record.countryCd != null">
+        country_cd = #{record.countryCd,jdbcType=CHAR},
+      </if>
+      <if test="record.custType != null">
+        cust_type = #{record.custType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.degree != null">
+        degree = #{record.degree,jdbcType=CHAR},
+      </if>
+      <if test="record.department != null">
+        department = #{record.department,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idExpireDate != null">
+        id_expire_date = #{record.idExpireDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatTime != null">
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where custno = #{record.custno,jdbcType=INTEGER} limit 1
+  </update>
+
+</mapper>

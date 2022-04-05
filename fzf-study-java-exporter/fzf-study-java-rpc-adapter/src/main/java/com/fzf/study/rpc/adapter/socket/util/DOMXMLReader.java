@@ -1,7 +1,7 @@
 package com.fzf.study.rpc.adapter.socket.util;
 
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.constant.Constants;
+import com.fzf.study.rpc.adapter.socket.constant.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

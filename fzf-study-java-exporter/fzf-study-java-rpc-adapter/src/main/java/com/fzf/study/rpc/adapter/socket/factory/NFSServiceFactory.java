@@ -1,7 +1,8 @@
 package com.fzf.study.rpc.adapter.socket.factory;
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.service.NFSService;
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.util.SpringContextUtil;
+
+import com.fzf.study.rpc.adapter.socket.service.NFSService;
+import com.fzf.study.rpc.adapter.socket.util.SpringContextUtil;
 
 import java.util.Map;
 

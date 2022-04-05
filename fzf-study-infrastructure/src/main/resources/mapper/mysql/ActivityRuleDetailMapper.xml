@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.ActivityRuleDetailMapper">
+  <resultMap id="BaseResultMap" type="com.fzf.study.infrastructure.adapter.db.po.ActivityRuleDetailPO">
+    <id column="id" property="id" />
+    <result column="activity_id"  property="activityId" />
+    <result column="rule_code" property="ruleCode" />
+    <result column="rule_unit_value" property="ruleUnitValue" />
+    <result column="add_time" property="addTime" />
+    <result column="update_time" property="updateTime" />
+  </resultMap>
+
+  <sql id="tableName">
+        mkt_rule_detail
+  </sql>
+
+  <sql id="Base_Column_List">
+    id, activity_id, rule_code, rule_unit_value, add_time, update_time
+  </sql>
+
+  <insert id="addList" parameterType="java.util.List">
+    insert into <include refid="tableName"/>
+    (activity_id, rule_code, rule_unit_value)
+    values
+    <foreach collection ="ruleValueList" item="ruleValue" index= "index" separator =",">
+      (#{activityId}, #{ruleCode}, #{ruleValue})
+    </foreach>
+  </insert>
+
+  <select id="count" resultType="java.lang.Integer" >
+    select count(*)
+    from <include refid="tableName"/>
+    where activity_id = #{activityId}
+      and rule_code = #{ruleCode}
+  </select>
+
+  <select id="countWithValue" resultType="java.lang.Integer" >
+    select count(*)
+    from <include refid="tableName"/>
+    where activity_id = #{activityId}
+    and rule_code = #{ruleCode}
+    and rule_unit_value = #{ruleValue}
+  </select>
+
+  <resultMap id="MaxMinIdMap" type="com.fzf.study.infrastructure.adapter.db.po.MktRuleDetailMaxMinIdPO">
+    <id column="maxId" property="maxId" />
+    <id column="minId" property="minId" />
+  </resultMap>
+
+  <select id="queryMaxMinId" resultMap="MaxMinIdMap">
+    select max(id) maxId, min(id) minId
+    from <include refid="tableName"/>
+    where activity_id = #{activityId}
+    and rule_code = #{ruleCode}
+  </select>
+
+  <select id="countWithValue2" resultType="java.lang.Integer" >
+        select count(*)
+        from <include refid="tableName"/>
+        where activity_id = #{activityId}
+        and rule_code = #{ruleCode}
+        <if test="ruleValue != null and ruleValue != ''">
+            and rule_unit_value = #{ruleValue,jdbcType=VARCHAR}
+        </if>
+  </select>
+
+  <select id="queryBatchActivityRuleUnitValue" resultType="java.lang.String">
+    select rule_unit_value
+    from <include refid="tableName"/>
+    where activity_id = #{activityId}
+    and rule_code = #{ruleCode} and (id > #{minId} and id &lt;= #{maxId})
+  </select>
+
+  <select id="queryPageByActivityIdAndRuleCode" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from
+    <include refid="tableName"/>
+    where activity_id = #{activityId}
+    and rule_code = #{ruleCode}
+    <if test="ruleUnitValue != null and ruleUnitValue != ''">
+      and rule_unit_value = #{ruleUnitValue,jdbcType=VARCHAR}
+    </if>
+    and id>=(select id from mkt_rule_detail where
+    activity_id = #{activityId} and rule_code = #{ruleCode}
+    <if test="ruleUnitValue != null and ruleUnitValue != ''">
+      and rule_unit_value = #{ruleUnitValue,jdbcType=VARCHAR}
+    </if>
+    order by id
+    limit #{startIndex},1) limit #{size}
+  </select>
+  <delete id="deleteList" parameterType="java.util.List">
+    delete
+    from <include refid="tableName"/>
+    where id in
+    <foreach collection="idList" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </delete>
+  <update id="updateValue" >
+    update
+    <include refid="tableName"/>
+    set rule_unit_value=#{ruleUnitValue,jdbcType=VARCHAR}
+    where
+    id=#{id}
+    <if test="activityId != null and activityId != ''">
+    and activity_id=#{activityId}
+    </if>
+  </update>
+
+</mapper>

@@ -1,0 +1,1 @@
+package com.fzf.study.domain.common;

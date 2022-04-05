@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.MktExternalActivityMapper">
+  <resultMap id="BaseResultMap" type="com.fzf.study.infrastructure.adapter.db.po.ExternalActivityPO">
+    <id column="id" property="id" />
+    <result column="activity_name" property="activityName" />
+    <result column="activity_desc" property="activityDesc" />
+    <result column="activity_status" property="activityStatus" />
+    <result column="activity_type" property="activityType" />
+    <result column="add_time" property="addTime" />
+    <result column="update_time" property="updateTime" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, activity_name, activity_desc, activity_status, activity_type, add_time, update_time
+  </sql>
+
+
+  <select id="queryByType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from mkt_external_activity
+    where activity_type = #{activityType} AND activity_status=1
+  </select>
+
+</mapper>

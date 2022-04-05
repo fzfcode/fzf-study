@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.invitation.CardApplyInvitationMapper">
+    <resultMap id="BaseResultMap"
+               type="com.fzf.study.infrastructure.adapter.db.po.invitation.CardApplyInvitationPO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="apply_id" jdbcType="VARCHAR" property="applyId"/>
+        <result column="org_code" jdbcType="VARCHAR" property="orgCode"/>
+        <result column="invitee_name" jdbcType="VARCHAR" property="inviteeName"/>
+        <result column="inviter_name" jdbcType="VARCHAR" property="inviterName"/>
+        <result column="prod_cd" jdbcType="VARCHAR" property="prodCd"/>
+        <result column="invitee_phone" jdbcType="VARCHAR" property="inviteePhone"/>
+        <result column="inviter_phone" jdbcType="VARCHAR" property="inviterPhone"/>
+        <result column="invitee_id_no" jdbcType="VARCHAR" property="inviteeIdNo"/>
+        <result column="inviter_id_no" jdbcType="VARCHAR" property="inviterIdNo"/>
+        <result column="inviter_cust_id" jdbcType="BIGINT" property="inviterCustId"/>
+        <result column="apply_time" jdbcType="VARCHAR" property="applyTime"/>
+        <result column="apply_status" jdbcType="VARCHAR" property="applyStatus"/>
+        <result column="aps_pass_time" jdbcType="VARCHAR" property="apsPassTime"/>
+        <result column="card_activ_time" jdbcType="VARCHAR" property="cardActivTime"/>
+        <result column="card_no" jdbcType="VARCHAR" property="cardNo"/>
+        <result column="inviter_job_no" jdbcType="VARCHAR" property="inviterJobNo"/>
+        <result column="inviter_branch_no" jdbcType="VARCHAR" property="inviterBranchNo"/>
+        <result column="intiter_branch_level" jdbcType="VARCHAR" property="intiterBranchLevel"/>
+        <result column="inviter_level" jdbcType="VARCHAR" property="inviterLevel"/>
+        <result column="inviter_position" jdbcType="VARCHAR" property="inviterPosition"/>
+        <result column="good_com_code" jdbcType="VARCHAR" property="goodComCode"/>
+        <result column="good_com_name" jdbcType="VARCHAR" property="goodComName"/>
+        <result column="good_com_short" jdbcType="VARCHAR" property="goodComShort"/>
+        <result column="acct_cust_identify" jdbcType="VARCHAR" property="acctCustIdentify"/>
+        <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+
+    <resultMap id="ApplyCountResultMap"
+               type="com.fzf.study.infrastructure.adapter.db.po.invitation.CardApplyCountPO">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="apply_status" jdbcType="VARCHAR" property="applyStatus"/>
+        <result column="apply_count" jdbcType="INTEGER" property="applyCount"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+      id, apply_id, org_code, invitee_name, inviter_name, prod_cd, invitee_phone, inviter_phone,
+      invitee_id_no, inviter_id_no, inviter_cust_id, apply_time, apply_status, aps_pass_time,
+      card_activ_time, card_no, inviter_job_no, inviter_branch_no, intiter_branch_level,
+      inviter_level, inviter_position, good_com_code, good_com_name, good_com_short, acct_cust_identify,
+      add_time, update_time
+    </sql>
+
+    <sql id="tableName">
+        card_apply_hist
+  </sql>
+
+    <select id="queryCardApplyInvitationByApplyFlowNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from card_apply_hist where apply_id=#{applyId,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="addCardApplyInvitation" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.fzf.study.infrastructure.adapter.db.po.invitation.CardApplyInvitationPO">
+        insert into
+        <include refid="tableName"/>
+        (
+        <if test="applyId != null and applyId != '' ">
+            apply_id,
+        </if>
+        <if test="inviteeName != null and inviteeName != ''">
+            invitee_name,
+        </if>
+        <if test="inviterName != null and inviterName != ''">
+            inviter_name,
+        </if>
+        <if test="prodCd != null and prodCd != ''">
+            prod_cd,
+        </if>
+        <if test="inviteePhone != null and inviteePhone != ''">
+            invitee_phone,
+        </if>
+        <if test="inviterPhone != null and inviterPhone != ''">
+            inviter_phone,
+        </if>
+        <if test="inviteeIdNo != null and inviteeIdNo != ''">
+            invitee_id_no,
+        </if>
+        <if test="inviterIdNo != null and inviterIdNo != ''">
+            inviter_id_no,
+        </if>
+        <if test="inviterCustId != null ">
+            inviter_cust_id,
+        </if>
+        <if test="applyTime != null and applyTime != ''">
+            apply_time,
+        </if>
+        <if test="applyStatus != null and applyStatus != ''">
+            apply_status,
+        </if>
+        <if test="inviterJobNo != null and inviterJobNo != ''">
+            inviter_job_no,
+        </if>
+        <if test="inviterBranchNo != null and inviterBranchNo != ''">
+            inviter_branch_no,
+        </if>
+        <if test="goodComCode != null and goodComCode != ''">
+            good_com_code,
+        </if>
+        <if test="acctCustIdentify != null and acctCustIdentify != ''">
+            acct_cust_identify
+        </if>
+        )
+        values
+        (
+        <if test="applyId != null and applyId != ''">
+            #{applyId},
+        </if>
+        <if test="inviteeName != null and inviteeName != ''">
+            #{inviteeName},
+        </if>
+        <if test="inviterName != null and inviterName != ''">
+            #{inviterName},
+        </if>
+        <if test="prodCd != null and prodCd != ''">
+            #{prodCd},
+        </if>
+        <if test="inviteePhone != null and inviteePhone != ''">
+            #{inviteePhone},
+        </if>
+        <if test="inviterPhone != null and inviterPhone != ''">
+            #{inviterPhone},
+        </if>
+        <if test="inviteeIdNo != null and inviteeIdNo != ''">
+            #{inviteeIdNo},
+        </if>
+        <if test="inviterIdNo != null and inviterIdNo != ''">
+            #{inviterIdNo},
+        </if>
+        <if test="inviterCustId != null ">
+            #{inviterCustId},
+        </if>
+        <if test="applyTime != null and applyTime != ''">
+            #{applyTime},
+        </if>
+        <if test="applyStatus != null and applyStatus != ''">
+            #{applyStatus},
+        </if>
+        <if test="inviterJobNo != null and inviterJobNo != ''">
+            #{inviterJobNo},
+        </if>
+        <if test="inviterBranchNo != null and inviterBranchNo != ''">
+            #{inviterBranchNo},
+        </if>
+        <if test="goodComCode != null and goodComCode != ''">
+            #{goodComCode},
+        </if>
+        <if test="acctCustIdentify != null and acctCustIdentify != ''">
+            #{acctCustIdentify}
+        </if>
+        )
+    </insert>
+
+    <update id="updateInviteeInfoByApplyIdAndState"
+            parameterType="com.fzf.study.infrastructure.adapter.db.po.invitation.CardApplyInvitationPO">
+        update
+        <include refid="tableName"/>
+        <set>
+            <if test="applyStatus != null">
+                apply_status = #{applyStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="apsPassTime != null">
+                aps_pass_time = #{apsPassTime,jdbcType=VARCHAR},
+            </if>
+            <if test="cardNo != null">
+                card_no = #{cardNo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where apply_id = #{applyId,jdbcType=VARCHAR} and apply_status not in('1001','1002','4444')
+    </update>
+
+    <update id="updateInviteeInfoByApplyId"
+            parameterType="com.fzf.study.infrastructure.adapter.db.po.invitation.CardApplyInvitationPO">
+        update
+        <include refid="tableName"/>
+        <set>
+            <if test="applyStatus != null">
+                apply_status = #{applyStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="apsPassTime != null">
+                aps_pass_time = #{apsPassTime,jdbcType=VARCHAR},
+            </if>
+            <if test="cardNo != null">
+                card_no = #{cardNo,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where apply_id = #{applyId,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateCardActivationStatusByCardNo"
+            parameterType="com.fzf.study.infrastructure.adapter.db.po.invitation.CardApplyInvitationPO">
+        update
+        <include refid="tableName"/>
+        <set>
+            <if test="applyStatus != null">
+                apply_status = #{applyStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="cardActivTime != null">
+                card_activ_time = #{cardActivTime,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where card_no = #{cardNo,jdbcType=VARCHAR}
+    </update>
+
+    <select id="countCardApplyPassByThreeDay" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM card_apply_hist
+        where
+        invitee_id_no= #{inviteeIdNo,jdbcType=VARCHAR}
+        and 3>DATEDIFF(NOW(),STR_TO_DATE(apply_time,'%Y-%m-%d'))
+        <if test="applyStatusList!=null and applyStatusList.size()>0">
+            and
+            apply_status in
+            <foreach collection="applyStatusList" item="applyStatus" separator="," open="(" close=")">
+                #{applyStatus, jdbcType=VARCHAR}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="countInviteeByIdNo" parameterType="java.util.Map" resultMap="ApplyCountResultMap">
+        SELECT apply_status,count(1) as 'apply_count'
+        FROM card_apply_hist
+        where
+        inviter_id_no= #{inviterIdNo,jdbcType=VARCHAR}
+        and acct_cust_identify ='1'
+        <if test="bankEmployeeFlag !=null and bankEmployeeFlag == 'Y'.toString()">
+            and inviter_job_no is not null
+        </if>
+        <if test="bankEmployeeFlag !=null and bankEmployeeFlag == 'N'.toString()">
+            and inviter_job_no is null
+        </if>
+        group by apply_status
+
+    </select>
+
+    <select id="countInviteeByIdNoAndEmployeeNo" parameterType="java.util.Map" resultMap="ApplyCountResultMap">
+        SELECT apply_status,count(1) as 'apply_count'
+        FROM card_apply_hist
+        where
+        inviter_job_no= #{bankEmployeeNo,jdbcType=VARCHAR}
+        and acct_cust_identify ='1'
+        group by apply_status
+    </select>
+
+    <select id="queryCardApplyInvitation" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM card_apply_hist
+        where
+        invitee_id_no= #{inviteeIdNo,jdbcType=VARCHAR}
+        and 3>DATEDIFF(NOW(),STR_TO_DATE(apply_time,'%Y-%m-%d'))
+        <if test="applyStatusList!=null and applyStatusList.size()>0">
+            and
+            apply_status in
+            <foreach collection="applyStatusList" item="applyStatus" separator="," open="(" close=")">
+                #{applyStatus, jdbcType=VARCHAR}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="countInviteeTotal" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM card_apply_hist
+        where
+        inviter_id_no= #{inviterIdNo,jdbcType=VARCHAR}
+        and acct_cust_identify ='1'
+        <if test="invititationOpt !=null and invititationOpt == 'PRIVATE'.toString()">
+            and good_com_code is null
+        </if>
+        <if test="invititationOpt !=null and invititationOpt == 'COMPANY'.toString()">
+            and good_com_code is not null
+        </if>
+        <if test="bankEmployeeFlag !=null and bankEmployeeFlag == 'Y'.toString()">
+            and inviter_job_no is not null
+        </if>
+        <if test="bankEmployeeFlag !=null and bankEmployeeFlag == 'N'.toString()">
+            and inviter_job_no is null
+        </if>
+        <if test="applyStatusList!=null and applyStatusList.size()>0">
+            and
+            apply_status in
+            <foreach collection="applyStatusList" item="applyStatus" separator="," open="(" close=")">
+                #{applyStatus, jdbcType=VARCHAR}
+            </foreach>
+        </if>
+        <if test="startDate!=null">
+            <![CDATA[
+            and apply_time >= #{startDate,jdbcType=DATE}
+            ]]>
+        </if>
+        <if test="endDate!=null">
+            <![CDATA[
+            and apply_time <= #{endDate,jdbcType=DATE}
+            ]]>
+        </if>
+    </select>
+
+    <select id="queryCardInvitationByInviterNo" resultMap="BaseResultMap"
+            parameterType="com.fzf.study.infrastructure.adapter.db.po.invitation.CardInvitationQueryPO">
+        select
+        <include refid="Base_Column_List"/>
+        from card_apply_hist where
+        inviter_id_no=#{inviterIdNo,jdbcType=VARCHAR}
+        and acct_cust_identify ='1'
+        <if test="invititationOpt !=null and invititationOpt == 'PRIVATE'.toString()">
+            and good_com_code is null
+        </if>
+        <if test="invititationOpt !=null and invititationOpt == 'COMPANY'.toString()">
+            and good_com_code is not null
+        </if>
+        <if test="bankEmployeeFlag !=null and bankEmployeeFlag == 'Y'.toString()">
+            and inviter_job_no is not null
+        </if>
+        <if test="bankEmployeeFlag !=null and bankEmployeeFlag == 'N'.toString()">
+            and inviter_job_no is null
+        </if>
+        <if test="cardApplyStatusList!=null and cardApplyStatusList.size()>0">
+            and
+            apply_status in
+            <foreach collection="cardApplyStatusList" item="applyStatus" separator="," open="(" close=")">
+                #{applyStatus, jdbcType=VARCHAR}
+            </foreach>
+        </if>
+        <if test="startDate!=null">
+            <![CDATA[
+            and apply_time >= #{startDate,jdbcType=DATE}
+            ]]>
+        </if>
+        <if test="endDate!=null">
+            <![CDATA[
+            and apply_time <= #{endDate,jdbcType=DATE}
+            ]]>
+        </if>
+        order by add_time desc
+        limit #{firstRow},#{lastRow}
+    </select>
+
+
+    <select id="countInviteeTotalByEmployeeNo" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT count(1)
+        FROM card_apply_hist
+        where
+        inviter_job_no= #{bankEmployeeNo,jdbcType=VARCHAR}
+        and acct_cust_identify ='1'
+        <if test="invititationOpt !=null and invititationOpt == 'PRIVATE'.toString()">
+            and good_com_code is null
+        </if>
+        <if test="invititationOpt !=null and invititationOpt == 'COMPANY'.toString()">
+            and good_com_code is not null
+        </if>
+        <if test="applyStatusList !=null and applyStatusList.size()>0">
+            and
+            apply_status in
+            <foreach collection="applyStatusList" item="applyStatus" separator="," open="(" close=")">
+                #{applyStatus, jdbcType=VARCHAR}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="queryCardInvitationByEmployeeNo" resultMap="BaseResultMap"
+            parameterType="com.fzf.study.infrastructure.adapter.db.po.invitation.CardInvitationQueryPO">
+        select
+        <include refid="Base_Column_List"/>
+        from card_apply_hist where
+        inviter_job_no=#{bankEmployeeNo,jdbcType=VARCHAR}
+        and acct_cust_identify ='1'
+        <if test="invititationOpt !=null and invititationOpt == 'PRIVATE'.toString()">
+            and good_com_code is null
+        </if>
+        <if test="invititationOpt !=null and invititationOpt == 'COMPANY'.toString()">
+            and good_com_code is not null
+        </if>
+        <if test="cardApplyStatusList!=null and cardApplyStatusList.size()>0">
+            and
+            apply_status in
+            <foreach collection="cardApplyStatusList" item="applyStatus" separator="," open="(" close=")">
+                #{applyStatus, jdbcType=VARCHAR}
+            </foreach>
+        </if>
+        limit #{firstRow},#{lastRow}
+    </select>
+
+</mapper>

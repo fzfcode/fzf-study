@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.common.CardMediaInfoMapper">
+  <resultMap id="BaseResultMap" type="com.fzf.study.infrastructure.adapter.db.po.common.CardMediaInfoPO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="orgno" jdbcType="VARCHAR" property="orgno" />
+    <result column="cardno" jdbcType="VARCHAR" property="cardno" />
+    <result column="old_cardno" jdbcType="VARCHAR" property="oldCardno" />
+    <result column="first_cardno" jdbcType="VARCHAR" property="firstCardno" />
+    <result column="product_cd" jdbcType="VARCHAR" property="productCd" />
+    <result column="photo_ind" jdbcType="CHAR" property="photoInd" />
+    <result column="emb_name" jdbcType="VARCHAR" property="embName" />
+    <result column="emb_company" jdbcType="VARCHAR" property="embCompany" />
+    <result column="setup_date" jdbcType="VARCHAR" property="setupDate" />
+    <result column="activate_date" jdbcType="VARCHAR" property="activateDate" />
+    <result column="active_ind" jdbcType="CHAR" property="activeInd" />
+    <result column="last_active_ind" jdbcType="CHAR" property="lastActiveInd" />
+    <result column="expiry_date" jdbcType="VARCHAR" property="expiryDate" />
+    <result column="last_expiry_date" jdbcType="VARCHAR" property="lastExpiryDate" />
+    <result column="next_change_date" jdbcType="VARCHAR" property="nextChangeDate" />
+    <result column="cancel_date" jdbcType="VARCHAR" property="cancelDate" />
+    <result column="design_cd" jdbcType="VARCHAR" property="designCd" />
+    <result column="block_cd" jdbcType="VARCHAR" property="blockCd" />
+    <result column="app_no" jdbcType="VARCHAR" property="appNo" />
+    <result column="bsc_supp_ind" jdbcType="CHAR" property="bscSuppInd" />
+    <result column="bsc_supp_ind_desc" jdbcType="VARCHAR" property="bscSuppIndDesc" />
+    <result column="logi_cardno" jdbcType="VARCHAR" property="logiCardno" />
+    <result column="last_design_cd" jdbcType="VARCHAR" property="lastDesignCd" />
+    <result column="owning_branch" jdbcType="VARCHAR" property="owningBranch" />
+    <result column="last_activate_date" jdbcType="VARCHAR" property="lastActivateDate" />
+    <result column="electronic_ind" jdbcType="CHAR" property="electronicInd" />
+    <result column="creat_time" jdbcType="TIMESTAMP" property="creatTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, orgno, cardno, old_cardno, first_cardno, product_cd, photo_ind, emb_name, emb_company,
+    setup_date, activate_date, active_ind, last_active_ind, expiry_date, last_expiry_date,
+    next_change_date, cancel_date, design_cd, block_cd, app_no, bsc_supp_ind, bsc_supp_ind_desc,
+    logi_cardno, last_design_cd, owning_branch, last_activate_date, electronic_ind, creat_time,
+    update_time
+  </sql>
+
+  <insert id="addCardMediaInfo" parameterType="com.fzf.study.infrastructure.adapter.db.po.common.CardMediaInfoPO">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into card_media_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orgno != null">
+        orgno,
+      </if>
+      <if test="cardno != null">
+        cardno,
+      </if>
+      <if test="oldCardno != null">
+        old_cardno,
+      </if>
+      <if test="firstCardno != null">
+        first_cardno,
+      </if>
+      <if test="productCd != null">
+        product_cd,
+      </if>
+      <if test="photoInd != null">
+        photo_ind,
+      </if>
+      <if test="embName != null">
+        emb_name,
+      </if>
+      <if test="embCompany != null">
+        emb_company,
+      </if>
+      <if test="setupDate != null">
+        setup_date,
+      </if>
+      <if test="activateDate != null">
+        activate_date,
+      </if>
+      <if test="activeInd != null">
+        active_ind,
+      </if>
+      <if test="lastActiveInd != null">
+        last_active_ind,
+      </if>
+      <if test="expiryDate != null">
+        expiry_date,
+      </if>
+      <if test="lastExpiryDate != null">
+        last_expiry_date,
+      </if>
+      <if test="nextChangeDate != null">
+        next_change_date,
+      </if>
+      <if test="cancelDate != null">
+        cancel_date,
+      </if>
+      <if test="designCd != null">
+        design_cd,
+      </if>
+      <if test="blockCd != null">
+        block_cd,
+      </if>
+      <if test="appNo != null">
+        app_no,
+      </if>
+      <if test="bscSuppInd != null">
+        bsc_supp_ind,
+      </if>
+      <if test="bscSuppIndDesc != null">
+        bsc_supp_ind_desc,
+      </if>
+      <if test="logiCardno != null">
+        logi_cardno,
+      </if>
+      <if test="lastDesignCd != null">
+        last_design_cd,
+      </if>
+      <if test="owningBranch != null">
+        owning_branch,
+      </if>
+      <if test="lastActivateDate != null">
+        last_activate_date,
+      </if>
+      <if test="electronicInd != null">
+        electronic_ind,
+      </if>
+      <if test="creatTime != null">
+        creat_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orgno != null">
+        #{orgno,jdbcType=VARCHAR},
+      </if>
+      <if test="cardno != null">
+        #{cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="oldCardno != null">
+        #{oldCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="firstCardno != null">
+        #{firstCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="productCd != null">
+        #{productCd,jdbcType=VARCHAR},
+      </if>
+      <if test="photoInd != null">
+        #{photoInd,jdbcType=CHAR},
+      </if>
+      <if test="embName != null">
+        #{embName,jdbcType=VARCHAR},
+      </if>
+      <if test="embCompany != null">
+        #{embCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="setupDate != null">
+        #{setupDate,jdbcType=VARCHAR},
+      </if>
+      <if test="activateDate != null">
+        #{activateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="activeInd != null">
+        #{activeInd,jdbcType=CHAR},
+      </if>
+      <if test="lastActiveInd != null">
+        #{lastActiveInd,jdbcType=CHAR},
+      </if>
+      <if test="expiryDate != null">
+        #{expiryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="lastExpiryDate != null">
+        #{lastExpiryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nextChangeDate != null">
+        #{nextChangeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelDate != null">
+        #{cancelDate,jdbcType=VARCHAR},
+      </if>
+      <if test="designCd != null">
+        #{designCd,jdbcType=VARCHAR},
+      </if>
+      <if test="blockCd != null">
+        #{blockCd,jdbcType=VARCHAR},
+      </if>
+      <if test="appNo != null">
+        #{appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bscSuppInd != null">
+        #{bscSuppInd,jdbcType=CHAR},
+      </if>
+      <if test="bscSuppIndDesc != null">
+        #{bscSuppIndDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="logiCardno != null">
+        #{logiCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="lastDesignCd != null">
+        #{lastDesignCd,jdbcType=VARCHAR},
+      </if>
+      <if test="owningBranch != null">
+        #{owningBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="lastActivateDate != null">
+        #{lastActivateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="electronicInd != null">
+        #{electronicInd,jdbcType=CHAR},
+      </if>
+      <if test="creatTime != null">
+        #{creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateCardMediaInfo" parameterType="com.fzf.study.infrastructure.adapter.db.po.common.CardMediaInfoPO">
+    update card_media_info
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.orgno != null">
+        orgno = #{record.orgno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardno != null">
+        cardno = #{record.cardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldCardno != null">
+        old_cardno = #{record.oldCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstCardno != null">
+        first_cardno = #{record.firstCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productCd != null">
+        product_cd = #{record.productCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.photoInd != null">
+        photo_ind = #{record.photoInd,jdbcType=CHAR},
+      </if>
+      <if test="record.embName != null">
+        emb_name = #{record.embName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.embCompany != null">
+        emb_company = #{record.embCompany,jdbcType=VARCHAR},
+      </if>
+      <if test="record.setupDate != null">
+        setup_date = #{record.setupDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activateDate != null">
+        activate_date = #{record.activateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activeInd != null">
+        active_ind = #{record.activeInd,jdbcType=CHAR},
+      </if>
+      <if test="record.lastActiveInd != null">
+        last_active_ind = #{record.lastActiveInd,jdbcType=CHAR},
+      </if>
+      <if test="record.expiryDate != null">
+        expiry_date = #{record.expiryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastExpiryDate != null">
+        last_expiry_date = #{record.lastExpiryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nextChangeDate != null">
+        next_change_date = #{record.nextChangeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelDate != null">
+        cancel_date = #{record.cancelDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.designCd != null">
+        design_cd = #{record.designCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blockCd != null">
+        block_cd = #{record.blockCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appNo != null">
+        app_no = #{record.appNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bscSuppInd != null">
+        bsc_supp_ind = #{record.bscSuppInd,jdbcType=CHAR},
+      </if>
+      <if test="record.bscSuppIndDesc != null">
+        bsc_supp_ind_desc = #{record.bscSuppIndDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logiCardno != null">
+        logi_cardno = #{record.logiCardno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastDesignCd != null">
+        last_design_cd = #{record.lastDesignCd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.owningBranch != null">
+        owning_branch = #{record.owningBranch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastActivateDate != null">
+        last_activate_date = #{record.lastActivateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.electronicInd != null">
+        electronic_ind = #{record.electronicInd,jdbcType=CHAR},
+      </if>
+      <if test="record.creatTime != null">
+        creat_time = #{record.creatTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    WHERE  cardno = #{record.cardno,jdbcType=VARCHAR}
+  </update>
+
+  <select id="countByCardNo"  resultType="java.lang.Long">
+    select count(1) from card_media_info
+    WHERE  cardno = #{cardNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

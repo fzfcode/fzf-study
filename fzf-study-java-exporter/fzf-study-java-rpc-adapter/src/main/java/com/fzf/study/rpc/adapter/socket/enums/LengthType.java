@@ -1,6 +1,6 @@
 package com.fzf.study.rpc.adapter.socket.enums;
 
-import com.sankuai.meituan.mkt.activity.rpc.adapter.socket.util.CodecUtil;
+import com.fzf.study.rpc.adapter.socket.util.CodecUtil;
 import org.springframework.core.codec.CodecException;
 
 public enum LengthType {

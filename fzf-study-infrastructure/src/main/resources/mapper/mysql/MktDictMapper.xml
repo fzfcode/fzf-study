@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzf.study.infrastructure.adapter.db.mapper.MktDictMapper">
+  <resultMap id="BaseResultMap" type="com.fzf.study.infrastructure.adapter.db.po.MktDictPO">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="dict_type" jdbcType="VARCHAR" property="dictType" />
+    <result column="dict_key" jdbcType="VARCHAR" property="dictKey" />
+    <result column="dict_value" jdbcType="VARCHAR" property="dictValue" />
+    <result column="dict_desc" jdbcType="VARCHAR" property="dictDesc" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, dict_type, dict_key, dict_value, dict_desc, add_time, update_time
+  </sql>
+
+  <select id="queryMktDictByType" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM mkt_dict WHERE dict_type = #{dictType} and dict_key = #{dictKey}
+    LIMIT 1
+  </select>
+
+  <select id="queryListByTypeAndKey" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM mkt_dict WHERE dict_type = #{dictType} and dict_key = #{dictKey}
+  </select>
+
+
+  <select id="queryMktDictListByType" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM mkt_dict WHERE dict_type = #{dictType}
+  </select>
+
+</mapper>
