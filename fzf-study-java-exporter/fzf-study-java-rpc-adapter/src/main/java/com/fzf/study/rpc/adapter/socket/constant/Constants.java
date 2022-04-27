@@ -19,6 +19,8 @@ public class Constants {
     public static final String QD_90602 = "90602";
     public static final String INSTALMENT_MSG_INVITE = "90605";
 
+    public static final String QD_60001 = "60001";
+
     //二维码邀请办卡数量统计接口
     public static final String QD_80001 = "80001";
     //二维码邀请办卡明细查询接口
@@ -49,4 +51,9 @@ public class Constants {
     public static final String DATE_SCOPE_ONLYONE = "ONLYONE";
     //笔笔抽短信发送次数标识
     public static final String DATE_SCOPE_DAILY = "DAY";
+
+
+    public static final String RESPONSE = "Response";
+
+    public static final String EXCEPTION = "Exception";
 }
