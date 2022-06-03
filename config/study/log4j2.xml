@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Properties>
+        <Property name="LOG_HOME">${sys:log.path.prefix}/fzf_apphome/logs</Property>
+        <property name="FILE_NAME">fzf_activity</property>
+        <Property name="PATTERN">%d{yyyy-MM-dd HH:mm:ss,SSS} [%-5p] [%traceId] [%t] %c{2} %msg%n</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN}"/>
+        </Console>
+
+        <RollingFile name="RollingFileInfo" fileName="${LOG_HOME}/${sys:bank}/${sys:specenv}/${FILE_NAME}.log"
+                     filePattern="${LOG_HOME}/${sys:bank}/${sys:specenv}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="${PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="200 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="15"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Logger name="org.springframework" level="INFO"></Logger>
+        
+        <Root level="INFO">
+            <Appender-ref  ref="Console" />
+            <Appender-ref ref="RollingFileInfo"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

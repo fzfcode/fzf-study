@@ -9,6 +9,9 @@ import org.springframework.stereotype.Component;
  * @date: 2022/5/9 1:04 下午
  * @description:
  * @version: v1.0
+ * spring自带的定时任务， 默认的定时器线程池只启动一个线程，
+ * 需要通过spring.task.scheduling.pool.size=10设置线程数，否则一个线程如果在多任务情况下，会导致线程阻塞
+ * quartz的定时任务，默认的定时器线程池会启动10个线程
  */
 @Component
 @Log4j2

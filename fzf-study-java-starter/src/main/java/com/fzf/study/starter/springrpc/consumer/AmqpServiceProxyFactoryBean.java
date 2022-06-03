@@ -1,4 +1,4 @@
-package com.fzf.study.starter.spring.consumer;
+package com.fzf.study.starter.springrpc.consumer;
 
 /**
  * @author: fanzhenfeng

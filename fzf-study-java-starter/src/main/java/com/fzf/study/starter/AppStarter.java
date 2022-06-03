@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication(scanBasePackages = {"com.fzf.study"})
 //@MapperScan("**.mapper")
 @ImportResource("classpath:applicationContext.xml")
+//@EnableCatClient
 public class AppStarter {
     public static void main(String[] args) {
         SpringApplication.run(AppStarter.class,args);

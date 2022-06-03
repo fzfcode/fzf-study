@@ -1,4 +1,4 @@
-package com.fzf.study.starter.spring.provider;
+package com.fzf.study.starter.springrpc.provider;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

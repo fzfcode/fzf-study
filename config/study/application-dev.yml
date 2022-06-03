@@ -1,25 +1,12 @@
-#spring:
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/cbc_benefit?useUnicode=true&characterEncoding=UTF-8&useSSL=false
-#    type: com.zaxxer.hikari.HikariDataSource
-#    username: root
-#    password: fzf917
-#    driver-class-name: com.mysql.cj.jdbc.Driver
 spring:
-#  cache:
-#    type: caffeine
-#    caffeine:
-#      spec: initialCapacity=10,maximumSize=50,expireAfterWrite=3600s
   application:
-    name: xy-cbc-mkt-activity
+    name: fzf-activity
   profiles:
     active: dev
   datasource:
-      driver-class-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.jdbc.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      #为什么用jdbc-url提示url有问题
-      #jdbc-url: jdbc:mysql://10.36.185.148:5002/cbcmktactivity?characterEncoding=UTF8&socketTimeout=60000&allowMultiQueries=true&useSSL=true
-      url: jdbc:mysql://localhost:3306/cbc_benefit?characterEncoding=UTF8&socketTimeout=60000&allowMultiQueries=true&useSSL=true
+      jdbc-url: jdbc:mysql://localhost:3306/cbc_marketing?characterEncoding=UTF8&socketTimeout=60000&allowMultiQueries=true&useSSL=true
       username: root
       password: fzf917
       minimum-idle: 5
@@ -30,8 +17,28 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+  task:
+    scheduling:
+      pool:
+        size: 10
+
+server:
+  port: 8819
 mybatis:
   mapper-locations: classpath*:mapper/mysql/*.xml
   config-location: classpath:mybatis-config.xml
+
+socket:
+  port: 10004
+  idleTime: 30000
+  lvMessageLengthSize: 6
+
+file:
+  filePath: /Users/fanzhenfeng/tmp
+  fileName: test.csv
+
+
+
+
 
 
